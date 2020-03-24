@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-export const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  search: (searchValue: string) => Promise<void>;
+}
+
+export const SearchBar: React.FC<SearchBarProps> = ({ search }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -9,6 +13,7 @@ export const SearchBar: React.FC = () => {
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
+    search(searchValue);
     resetInputField();
   };
 
