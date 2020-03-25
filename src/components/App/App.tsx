@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
 
 import { SearchBar } from '../search-bar/search-bar';
+import { MoviesShowcase } from '../movies-showcase/movies-showcase';
 import { ActionTypes } from '../store/types';
 import { reducer, initialState } from '../store/reducer';
 
@@ -56,16 +57,10 @@ export const App = () => {
     }
   };
 
-  const { movies, errorMessage, loading } = state;
-
   return (
     <div>
-      {errorMessage ? <h2>{errorMessage}</h2> : null}
-      {loading ? <h2>Loading..</h2> : null}
       <SearchBar search={search} />
-      {movies.map(movie => {
-        return <div>{movie.Title}</div>;
-      })}
+      <MoviesShowcase {...state} />
     </div>
   );
 };
