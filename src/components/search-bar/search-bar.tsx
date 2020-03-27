@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-interface SearchBarProps {
-  search: (searchValue: string) => Promise<void>;
-}
+import { useAppState } from '../../hooks/useAppState';
+import { fetchSearchMovies } from '../../store/actions';
 
-export const SearchBar: React.FC<SearchBarProps> = ({ search }) => {
+export const SearchBar: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
+  const { dispatch } = useAppState();
+
+  useEffect(() => {
+    fetchSearchMovies('man', dispatch);
+  }, [dispatch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(e.target.value);
@@ -13,7 +17,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ search }) => {
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    search(searchValue);
+    fetchSearchMovies(searchValue, dispatch);
     resetInputField();
   };
 

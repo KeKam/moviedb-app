@@ -1,16 +1,12 @@
 import React from 'react';
 
+import { Movie } from '../../store/reducer';
+
 export interface MovieProps {
-  movie: {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
-  };
+  movie: Movie;
 }
 
-export const Movie: React.FC<MovieProps> = ({ movie }) => {
+export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
   return (
     <div>
       <h2>{movie.Title}</h2>

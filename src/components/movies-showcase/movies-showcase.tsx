@@ -1,24 +1,12 @@
 import React from 'react';
 
-import { Movie } from '../movie/movie';
+import { useAppState } from '../../hooks/useAppState';
+import { MovieItem } from '../movie-item/movie-item';
 
-export interface MoviesShowCaseProps {
-  movies: {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
-  }[];
-  errorMessage: null | string;
-  loading: boolean;
-}
+export const MoviesShowcase: React.FC = () => {
+  const { state } = useAppState();
+  const { loading, errorMessage, movies } = state;
 
-export const MoviesShowcase: React.FC<MoviesShowCaseProps> = ({
-  movies,
-  errorMessage,
-  loading
-}) => {
   return (
     <div>
       {loading && !errorMessage ? (
@@ -27,10 +15,9 @@ export const MoviesShowcase: React.FC<MoviesShowCaseProps> = ({
         <div>{errorMessage}</div>
       ) : (
         movies.map((movie, index) => {
-          return <Movie key={index} movie={movie} />;
+          return <MovieItem key={index} movie={movie} />;
         })
       )}
-      {}
     </div>
   );
 };

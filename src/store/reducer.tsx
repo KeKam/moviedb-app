@@ -1,18 +1,20 @@
 import { Actions, ActionTypes } from './types';
 
+export interface Movie {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
 interface AppState {
   loading: boolean;
-  movies: {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
-  }[];
+  movies: Movie[];
   errorMessage: null | string;
 }
 
-export const initialState = {
+export const initialState: AppState = {
   loading: true,
   movies: [],
   errorMessage: null
