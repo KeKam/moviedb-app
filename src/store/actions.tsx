@@ -35,3 +35,29 @@ export const fetchSearchMovies = async (
     console.log(error);
   }
 };
+
+export const fetchMovie = async (
+  id: string,
+  dispatch: React.Dispatch<Actions>
+): Promise<void> => {
+  dispatch({ type: ActionTypes.START_FETCH_MOVIE });
+
+  try {
+    const response = await axios.get<SearchResults>(
+      `https://www.omdbapi.com/?i=${id}&apikey=${OMDB_API_KEY}`
+    );
+    if (response.data.Response === 'True') {
+      dispatch({
+        type: ActionTypes.FETCH_MOVIE_SUCCESS,
+        payload: response.data
+      });
+    } else {
+      dispatch({
+        type: ActionTypes.FETCH_MOVIE_FAILURE,
+        payload: response.data.Error
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
