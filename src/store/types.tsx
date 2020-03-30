@@ -1,3 +1,5 @@
+import { MovieDetails } from '../store/reducer';
+
 export enum ActionTypes {
   START_SEARCH_MOVIES = 'START_SEARCH_MOVIES',
   SEARCH_MOVIES_SUCCESS = 'SEARCH_MOVIES_SUCCESS',
@@ -24,7 +26,7 @@ export type Actions =
     }
   | {
       type: ActionTypes.FETCH_MOVIE_SUCCESS;
-      payload: {};
+      payload: MovieDetails;
     }
   | {
       type: ActionTypes.FETCH_MOVIE_FAILURE;

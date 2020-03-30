@@ -1,10 +1,15 @@
 import axios from 'axios';
 
 import { Actions, ActionTypes } from './types';
+import { MovieDetails } from '../store/reducer';
 
-interface SearchResults {
+interface FetchSearchResults {
   Search: [];
   Response: string;
+  Error: string;
+}
+
+interface FetchMovieDetails extends MovieDetails {
   Error: string;
 }
 
@@ -17,7 +22,7 @@ export const fetchSearchMovies = async (
   dispatch({ type: ActionTypes.START_SEARCH_MOVIES });
 
   try {
-    const response = await axios.get<SearchResults>(
+    const response = await axios.get<FetchSearchResults>(
       `https://www.omdbapi.com/?s=${searchValue}&apikey=${OMDB_API_KEY}`
     );
     if (response.data.Response === 'True') {
@@ -43,7 +48,7 @@ export const fetchMovie = async (
   dispatch({ type: ActionTypes.START_FETCH_MOVIE });
 
   try {
-    const response = await axios.get<SearchResults>(
+    const response = await axios.get<FetchMovieDetails>(
       `https://www.omdbapi.com/?i=${id}&apikey=${OMDB_API_KEY}`
     );
     if (response.data.Response === 'True') {
