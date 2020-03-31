@@ -3,6 +3,7 @@ import React from 'react';
 import { Movie } from '../../store/reducer';
 import { fetchMovie } from '../../store/actions';
 import { useAppState } from '../../hooks/useAppState';
+import { MovieItemStyles as S } from './movie-item.styled';
 
 export interface MovieProps {
   movie: Movie;
@@ -18,12 +19,13 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
   };
 
   return (
-    <div onClick={handleOnClick}>
-      <h2>{Title}</h2>
+    <S.Container onClick={handleOnClick}>
+      <S.Title>
+        {Title} ({Year})
+      </S.Title>
       <div>
-        <img src={Poster} alt='Poster' />
+        <S.Poster src={Poster} alt='Poster' />
       </div>
-      <span>{Year}</span>
-    </div>
+    </S.Container>
   );
 };
