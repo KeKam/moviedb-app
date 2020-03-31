@@ -78,6 +78,11 @@ export const reducer = (state: AppState, action: Actions) => {
         loading: false,
         errorMessage: action.payload
       };
+    case ActionTypes.TOGGLE_DETAILS_POPUP:
+      return {
+        ...state,
+        movie: null
+      };
     default:
       return state;
   }

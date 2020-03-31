@@ -1,30 +1,40 @@
 import React from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
+import { MovieDetailsStyles as S } from './movie-details.styled';
+import { ActionTypes } from '../../store/types';
 
 export const MovieDetails: React.FC = () => {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
   const { movie } = state;
 
+  const handleOnClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+    e.preventDefault();
+    dispatch({ type: ActionTypes.TOGGLE_DETAILS_POPUP });
+  };
+
   return (
-    <div>
+    <S.Container onClick={handleOnClick}>
       {movie ? (
-        <div>
-          <h2>
-            {movie.Title} ({movie.Year})
-          </h2>
-          <h4>Runtime: {movie.Runtime}</h4>
-          <h4>Released: {movie.Released}</h4>
-          <h4>Genre: {movie.Genre}</h4>
-          <h4>Director: {movie.Director}</h4>
-          <h4>Writers: {movie.Writer}</h4>
-          <h4>Actors: {movie.Actors}</h4>
-          <h4>Plot: {movie.Plot}</h4>
-          <h4>Rating: {movie.imdbRating}</h4>
-        </div>
+        <S.DetailsContainer>
+          <S.Poster src={movie.Poster} alt={`The movie: ${movie.Title}`} />
+          <S.Details>
+            <S.Title>
+              {movie.Title} ({movie.Year})
+            </S.Title>
+            <h4>Runtime: {movie.Runtime}</h4>
+            <h4>Released: {movie.Released}</h4>
+            <h4>Genre: {movie.Genre}</h4>
+            <h4>Director: {movie.Director}</h4>
+            <h4>Writers: {movie.Writer}</h4>
+            <h4>Actors: {movie.Actors}</h4>
+            <h4>Plot: {movie.Plot}</h4>
+            <h4>Rating: {movie.imdbRating}</h4>
+          </S.Details>
+        </S.DetailsContainer>
       ) : (
         <h2>No movie</h2>
       )}
-    </div>
+    </S.Container>
   );
 };
