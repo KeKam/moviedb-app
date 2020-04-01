@@ -11,7 +11,7 @@ export interface MovieProps {
 
 export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
   const { dispatch } = useAppState();
-  const { imdbID, Title, Poster, Year } = movie;
+  const { imdbID, Poster } = movie;
 
   const handleOnClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.preventDefault();
@@ -20,12 +20,7 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
 
   return (
     <S.Container onClick={handleOnClick}>
-      <S.Title>
-        {Title} ({Year})
-      </S.Title>
-      <div>
-        <S.Poster src={Poster} alt='Poster' />
-      </div>
+      <S.Poster src={Poster} alt='Poster' />
     </S.Container>
   );
 };
