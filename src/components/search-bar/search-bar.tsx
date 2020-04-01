@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
 import { fetchSearchMovies } from '../../store/actions';
+import { SearchBarStyles as S } from './search-bar.styled';
 
 export const SearchBar: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -26,11 +27,13 @@ export const SearchBar: React.FC = () => {
   };
 
   return (
-    <form>
-      <input onChange={handleInputChange} value={searchValue} type='text' />
-      <button onClick={handleOnClick} type='submit'>
-        Search
-      </button>
-    </form>
+    <S.Container>
+      <form>
+        <input onChange={handleInputChange} value={searchValue} type='text' />
+        <button onClick={handleOnClick} type='submit'>
+          Search
+        </button>
+      </form>
+    </S.Container>
   );
 };
