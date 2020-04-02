@@ -1,4 +1,4 @@
-import { MovieDetails } from '../store/reducer';
+import { MovieDetails, User } from '../store/reducer';
 
 export enum ActionTypes {
   START_SEARCH_MOVIES = 'START_SEARCH_MOVIES',
@@ -7,7 +7,9 @@ export enum ActionTypes {
   START_FETCH_MOVIE = 'START_FETCH_MOVIE',
   FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS',
   FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE',
-  TOGGLE_DETAILS_POPUP = 'TOGGLE_DETAILS_POPUP'
+  TOGGLE_DETAILS_POPUP = 'TOGGLE_DETAILS_POPUP',
+  SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS',
+  SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 }
 
 export type Actions =
@@ -35,4 +37,12 @@ export type Actions =
     }
   | {
       type: ActionTypes.TOGGLE_DETAILS_POPUP;
+    }
+  | {
+      type: ActionTypes.SIGN_IN_SUCCESS;
+      payload: User;
+    }
+  | {
+      type: ActionTypes.SIGN_IN_FAILURE;
+      payload: string;
     };

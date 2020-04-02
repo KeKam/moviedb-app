@@ -2,6 +2,11 @@ import axios from 'axios';
 
 import { Actions, ActionTypes } from './types';
 import { MovieDetails } from '../store/reducer';
+import {
+  auth,
+  googleProvider,
+  createUserProfileDocument
+} from '../firebase/firebase.utils';
 
 interface FetchSearchResults {
   Search: [];
@@ -64,5 +69,29 @@ export const fetchMovie = async (
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const signInWithGoogle = async (
+  dispatch: React.Dispatch<Actions>
+): Promise<void> => {
+  try {
+    const { user } = await auth.signInWithPopup(googleProvider);
+    console.log(createUserProfileDocument(user));
+    const userRef = await createUserProfileDocument(user);
+
+    if (userRef) {
+      const userSnapshot = await userRef.get();
+      dispatch({
+        type: ActionTypes.SIGN_IN_SUCCESS,
+        payload: { id: userSnapshot.id, ...userSnapshot.data() }
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: ActionTypes.SIGN_IN_FAILURE,
+      payload: error.message
+    });
   }
 };

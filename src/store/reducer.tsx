@@ -36,18 +36,24 @@ export interface MovieDetails {
   Response: string;
 }
 
+export interface User {
+  id: string;
+}
+
 interface AppState {
   loading: boolean;
   movies: Movie[];
   errorMessage: null | string;
   movie: MovieDetails | null;
+  currentUser: User | null;
 }
 
 export const initialState: AppState = {
   loading: true,
   movies: [],
   errorMessage: null,
-  movie: null
+  movie: null,
+  currentUser: null
 };
 
 export const reducer = (state: AppState, action: Actions) => {
@@ -71,6 +77,7 @@ export const reducer = (state: AppState, action: Actions) => {
         loading: false,
         movie: action.payload
       };
+    case ActionTypes.SIGN_IN_FAILURE:
     case ActionTypes.SEARCH_MOVIES_FAILURE:
     case ActionTypes.FETCH_MOVIE_FAILURE:
       return {
@@ -82,6 +89,12 @@ export const reducer = (state: AppState, action: Actions) => {
       return {
         ...state,
         movie: null
+      };
+    case ActionTypes.SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        errorMessage: null,
+        currentUser: action.payload
       };
     default:
       return state;
