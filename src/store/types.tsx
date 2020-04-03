@@ -9,7 +9,9 @@ export enum ActionTypes {
   FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE',
   TOGGLE_DETAILS_POPUP = 'TOGGLE_DETAILS_POPUP',
   SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS',
-  SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
+  SIGN_IN_FAILURE = 'SIGN_IN_FAILURE',
+  SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS',
+  SIGN_OUT_FAILURE = 'SIGN_OUT_FAILURE'
 }
 
 export type Actions =
@@ -44,5 +46,12 @@ export type Actions =
     }
   | {
       type: ActionTypes.SIGN_IN_FAILURE;
+      payload: string;
+    }
+  | {
+      type: ActionTypes.SIGN_OUT_SUCCESS;
+    }
+  | {
+      type: ActionTypes.SIGN_OUT_FAILURE;
       payload: string;
     };

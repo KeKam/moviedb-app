@@ -77,7 +77,6 @@ export const signInWithGoogle = async (
 ): Promise<void> => {
   try {
     const { user } = await auth.signInWithPopup(googleProvider);
-    console.log(createUserProfileDocument(user));
     const userRef = await createUserProfileDocument(user);
 
     if (userRef) {
@@ -91,6 +90,20 @@ export const signInWithGoogle = async (
     console.log(error.message);
     dispatch({
       type: ActionTypes.SIGN_IN_FAILURE,
+      payload: error.message
+    });
+  }
+};
+
+export const signOut = async (
+  dispatch: React.Dispatch<Actions>
+): Promise<void> => {
+  try {
+    await auth.signOut();
+    dispatch({ type: ActionTypes.SIGN_OUT_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.SIGN_OUT_FAILURE,
       payload: error.message
     });
   }

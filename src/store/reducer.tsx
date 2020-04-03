@@ -78,6 +78,7 @@ export const reducer = (state: AppState, action: Actions) => {
         movie: action.payload
       };
     case ActionTypes.SIGN_IN_FAILURE:
+    case ActionTypes.SIGN_OUT_FAILURE:
     case ActionTypes.SEARCH_MOVIES_FAILURE:
     case ActionTypes.FETCH_MOVIE_FAILURE:
       return {
@@ -95,6 +96,12 @@ export const reducer = (state: AppState, action: Actions) => {
         ...state,
         errorMessage: null,
         currentUser: action.payload
+      };
+    case ActionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        errorMessage: null,
+        currentUser: null
       };
     default:
       return state;
