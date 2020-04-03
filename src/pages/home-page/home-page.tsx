@@ -1,20 +1,16 @@
 import React from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
-import { SearchBar } from '../search-bar/search-bar';
-import { MoviesShowcase } from '../movies-showcase/movies-showcase';
-import { MovieDetails } from '../movie-details/movie-details';
-import { Header } from '../header/header';
-import { GlobalStyle } from '../global-style/global-style';
+import { MovieDetails } from '../../components/movie-details/movie-details';
+import { SearchBar } from '../../components/search-bar/search-bar';
+import { MoviesShowcase } from '../../components/movies-showcase/movies-showcase';
 
-export const App = () => {
+export const HomePage: React.FC = () => {
   const { state } = useAppState();
   const { movie } = state;
 
   return (
     <div>
-      <GlobalStyle />
-      <Header />
       {movie ? (
         <div>
           <MovieDetails />

@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App/App';
+import { BrowserRouter } from 'react-router-dom';
+
+import { App } from './App';
 import { AppStateProvider } from './contexts/app.context';
 
 ReactDOM.render(
-  <AppStateProvider>
-    <App />
-  </AppStateProvider>,
+  <BrowserRouter>
+    <AppStateProvider>
+      <App />
+    </AppStateProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
