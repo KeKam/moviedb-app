@@ -46,6 +46,7 @@ interface AppState {
   errorMessage: null | string;
   movie: MovieDetails | null;
   currentUser: User | null;
+  favourites: Movie[];
 }
 
 export const initialState: AppState = {
@@ -53,7 +54,8 @@ export const initialState: AppState = {
   movies: [],
   errorMessage: null,
   movie: null,
-  currentUser: null
+  currentUser: null,
+  favourites: []
 };
 
 export const reducer = (state: AppState, action: Actions) => {
@@ -102,6 +104,12 @@ export const reducer = (state: AppState, action: Actions) => {
         ...state,
         errorMessage: null,
         currentUser: null
+      };
+    case ActionTypes.ADD_TO_FAVOURITES:
+      return {
+        ...state,
+        errorMessage: null,
+        favourites: action.payload
       };
     default:
       return state;

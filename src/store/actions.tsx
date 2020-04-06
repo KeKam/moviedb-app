@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { Actions, ActionTypes } from './types';
-import { MovieDetails } from '../store/reducer';
+import { MovieDetails, Movie } from '../store/reducer';
 import {
   auth,
   googleProvider,
@@ -107,4 +107,24 @@ export const signOut = async (
       payload: error.message
     });
   }
+};
+
+export const addToFavourites = (
+  favourites: Movie[],
+  newFavourite: Movie,
+  dispatch: React.Dispatch<Actions>
+) => {
+  const existingFavourite = favourites.find(
+    favourite => favourite.imdbID === newFavourite.imdbID
+  );
+
+  if (existingFavourite) {
+    return favourites.map(favourite =>
+      favourite.imdbID === newFavourite.imdbID ? null : favourite
+    );
+  }
+  dispatch({
+    type: ActionTypes.ADD_TO_FAVOURITES,
+    payload: [...favourites, newFavourite]
+  });
 };

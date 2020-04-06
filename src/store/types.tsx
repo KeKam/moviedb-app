@@ -1,4 +1,4 @@
-import { MovieDetails, User } from '../store/reducer';
+import { MovieDetails, User, Movie } from '../store/reducer';
 
 export enum ActionTypes {
   START_SEARCH_MOVIES = 'START_SEARCH_MOVIES',
@@ -11,7 +11,8 @@ export enum ActionTypes {
   SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS',
   SIGN_IN_FAILURE = 'SIGN_IN_FAILURE',
   SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS',
-  SIGN_OUT_FAILURE = 'SIGN_OUT_FAILURE'
+  SIGN_OUT_FAILURE = 'SIGN_OUT_FAILURE',
+  ADD_TO_FAVOURITES = 'ADD_TO_FAVOURITES'
 }
 
 export type Actions =
@@ -54,4 +55,8 @@ export type Actions =
   | {
       type: ActionTypes.SIGN_OUT_FAILURE;
       payload: string;
+    }
+  | {
+      type: ActionTypes.ADD_TO_FAVOURITES;
+      payload: Movie[];
     };
