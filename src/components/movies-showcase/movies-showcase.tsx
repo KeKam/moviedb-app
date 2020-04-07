@@ -6,11 +6,12 @@ import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 
 export const MoviesShowcase: React.FC = () => {
   const { state } = useAppState();
-  const { loading, errorMessage, movies } = state;
+  const { errorMessage, movies } = state;
+  console.log('rendered');
 
   return (
     <S.Container>
-      {loading && !errorMessage ? (
+      {!movies ? (
         <div>Loading...</div>
       ) : errorMessage ? (
         <div>{errorMessage}</div>

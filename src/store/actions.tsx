@@ -5,7 +5,7 @@ import { MovieDetails, Movie } from '../store/reducer';
 import {
   auth,
   googleProvider,
-  createUserProfileDocument
+  createUserProfileDocument,
 } from '../firebase/firebase.utils';
 
 interface FetchSearchResults {
@@ -33,12 +33,12 @@ export const fetchSearchMovies = async (
     if (response.data.Response === 'True') {
       dispatch({
         type: ActionTypes.SEARCH_MOVIES_SUCCESS,
-        payload: response.data.Search
+        payload: response.data.Search,
       });
     } else {
       dispatch({
         type: ActionTypes.SEARCH_MOVIES_FAILURE,
-        payload: response.data.Error
+        payload: response.data.Error,
       });
     }
   } catch (error) {
@@ -59,12 +59,12 @@ export const fetchMovie = async (
     if (response.data.Response === 'True') {
       dispatch({
         type: ActionTypes.FETCH_MOVIE_SUCCESS,
-        payload: response.data
+        payload: response.data,
       });
     } else {
       dispatch({
         type: ActionTypes.FETCH_MOVIE_FAILURE,
-        payload: response.data.Error
+        payload: response.data.Error,
       });
     }
   } catch (error) {
@@ -83,14 +83,14 @@ export const signInWithGoogle = async (
       const userSnapshot = await userRef.get();
       dispatch({
         type: ActionTypes.SIGN_IN_SUCCESS,
-        payload: { id: userSnapshot.id, ...userSnapshot.data() }
+        payload: { id: userSnapshot.id, ...userSnapshot.data() },
       });
     }
   } catch (error) {
     console.log(error.message);
     dispatch({
       type: ActionTypes.SIGN_IN_FAILURE,
-      payload: error.message
+      payload: error.message,
     });
   }
 };
@@ -104,7 +104,7 @@ export const signOut = async (
   } catch (error) {
     dispatch({
       type: ActionTypes.SIGN_OUT_FAILURE,
-      payload: error.message
+      payload: error.message,
     });
   }
 };
@@ -115,16 +115,16 @@ export const addToFavourites = (
   dispatch: React.Dispatch<Actions>
 ) => {
   const existingFavourite = favourites.find(
-    favourite => favourite.imdbID === newFavourite.imdbID
+    (favourite) => favourite.imdbID === newFavourite.imdbID
   );
 
   if (existingFavourite) {
-    return favourites.map(favourite =>
+    return favourites.map((favourite) =>
       favourite.imdbID === newFavourite.imdbID ? null : favourite
     );
   }
   dispatch({
     type: ActionTypes.ADD_TO_FAVOURITES,
-    payload: [...favourites, newFavourite]
+    payload: [...favourites, newFavourite],
   });
 };

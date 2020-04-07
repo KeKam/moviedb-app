@@ -11,18 +11,13 @@ export const HomePage: React.FC = () => {
 
   return (
     <div>
+      <SearchBar />
+      <MoviesShowcase />
       {movie ? (
         <div>
           <MovieDetails />
-          <SearchBar />
-          <MoviesShowcase />
         </div>
-      ) : (
-        <div>
-          <SearchBar />
-          <MoviesShowcase />
-        </div>
-      )}
+      ) : null}
     </div>
   );
 };
