@@ -36,8 +36,11 @@ export interface MovieDetails {
   Response: string;
 }
 
-export interface User {
+export interface UserDetails {
   id: string;
+  createdAt?: Date;
+  displayName?: string;
+  email?: string;
 }
 
 interface AppState {
@@ -45,7 +48,7 @@ interface AppState {
   movies: Movie[];
   errorMessage: null | string;
   movie: MovieDetails | null;
-  currentUser: User | null;
+  currentUser: UserDetails | null;
   favourites: Movie[];
 }
 
@@ -55,7 +58,7 @@ export const initialState: AppState = {
   errorMessage: null,
   movie: null,
   currentUser: null,
-  favourites: []
+  favourites: [],
 };
 
 export const reducer = (state: AppState, action: Actions) => {
@@ -65,19 +68,19 @@ export const reducer = (state: AppState, action: Actions) => {
       return {
         ...state,
         loading: true,
-        errorMessage: null
+        errorMessage: null,
       };
     case ActionTypes.SEARCH_MOVIES_SUCCESS:
       return {
         ...state,
         loading: false,
-        movies: action.payload
+        movies: action.payload,
       };
     case ActionTypes.FETCH_MOVIE_SUCCESS:
       return {
         ...state,
         loading: false,
-        movie: action.payload
+        movie: action.payload,
       };
     case ActionTypes.SIGN_IN_FAILURE:
     case ActionTypes.SIGN_OUT_FAILURE:
@@ -86,30 +89,30 @@ export const reducer = (state: AppState, action: Actions) => {
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload
+        errorMessage: action.payload,
       };
     case ActionTypes.TOGGLE_DETAILS_POPUP:
       return {
         ...state,
-        movie: null
+        movie: null,
       };
     case ActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
         errorMessage: null,
-        currentUser: action.payload
+        currentUser: action.payload,
       };
     case ActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
         errorMessage: null,
-        currentUser: null
+        currentUser: null,
       };
     case ActionTypes.ADD_TO_FAVOURITES:
       return {
         ...state,
         errorMessage: null,
-        favourites: action.payload
+        favourites: action.payload,
       };
     default:
       return state;

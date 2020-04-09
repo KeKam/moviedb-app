@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { User } from 'firebase';
 
 import { Actions, ActionTypes } from './types';
 import { MovieDetails, Movie } from '../store/reducer';
@@ -72,22 +73,34 @@ export const fetchMovie = async (
   }
 };
 
-export const signInWithGoogle = async (
+export const getUserSnapshot = async (
+  user: User | null,
   dispatch: React.Dispatch<Actions>
-): Promise<void> => {
+) => {
   try {
-    const { user } = await auth.signInWithPopup(googleProvider);
     const userRef = await createUserProfileDocument(user);
-
-    if (userRef) {
-      const userSnapshot = await userRef.get();
+    const userSnapshot = await userRef?.get();
+    if (userSnapshot) {
       dispatch({
         type: ActionTypes.SIGN_IN_SUCCESS,
         payload: { id: userSnapshot.id, ...userSnapshot.data() },
       });
     }
   } catch (error) {
-    console.log(error.message);
+    dispatch({
+      type: ActionTypes.SIGN_IN_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+export const signInWithGoogle = async (
+  dispatch: React.Dispatch<Actions>
+): Promise<void> => {
+  try {
+    const { user } = await auth.signInWithPopup(googleProvider);
+    await getUserSnapshot(user, dispatch);
+  } catch (error) {
     dispatch({
       type: ActionTypes.SIGN_IN_FAILURE,
       payload: error.message,
@@ -126,5 +139,22 @@ export const addToFavourites = (
   dispatch({
     type: ActionTypes.ADD_TO_FAVOURITES,
     payload: [...favourites, newFavourite],
+  });
+};
+
+export const checkUserSession = (dispatch: React.Dispatch<Actions>) => {
+  auth.onAuthStateChanged(async (user) => {
+    try {
+      if (user) {
+        await getUserSnapshot(user, dispatch);
+      } else {
+        return null;
+      }
+    } catch (error) {
+      dispatch({
+        type: ActionTypes.SIGN_IN_FAILURE,
+        payload: error.message,
+      });
+    }
   });
 };

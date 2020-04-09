@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase, { User } from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 
@@ -10,7 +10,7 @@ const config = {
   storageBucket: 'moviedb-app-60919.appspot.com',
   messagingSenderId: '314569931188',
   appId: '1:314569931188:web:377dfbc4f162a4b5d9dae1',
-  measurementId: 'G-VBPFJ249E8'
+  measurementId: 'G-VBPFJ249E8',
 };
 
 firebase.initializeApp(config);
@@ -23,7 +23,7 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
-export const createUserProfileDocument = async (user: firebase.User | null) => {
+export const createUserProfileDocument = async (user: User | null) => {
   if (!user) return;
 
   const userRef = firestore.doc(`users/${user.uid}`);
@@ -37,7 +37,7 @@ export const createUserProfileDocument = async (user: firebase.User | null) => {
       await userRef.set({
         displayName,
         email,
-        createdAt
+        createdAt,
       });
     } catch (error) {
       console.log('Failed creating user', error);
