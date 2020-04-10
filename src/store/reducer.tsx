@@ -108,6 +108,7 @@ export const reducer = (state: AppState, action: Actions) => {
         ...state,
         errorMessage: null,
         currentUser: null,
+        favourites: [],
       };
     case ActionTypes.ADD_TO_FAVOURITES:
       return {
