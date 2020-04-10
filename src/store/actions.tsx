@@ -194,14 +194,11 @@ export const setFavouritesFromFirebase = async (
       const favouritesSnapshot = await favouritesRef.get();
 
       dispatch({
-        type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE_SUCCESS,
+        type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE,
         payload: favouritesSnapshot.data()?.favourites,
       });
     }
   } catch (error) {
-    dispatch({
-      type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE_FAILURE,
-      payload: error.message,
-    });
+    console.log(error);
   }
 };
