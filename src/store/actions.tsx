@@ -2,11 +2,13 @@ import axios from 'axios';
 import { User } from 'firebase';
 
 import { Actions, ActionTypes } from './types';
-import { MovieDetails, Movie } from '../store/reducer';
+import { MovieDetails, Movie, UserDetails } from '../store/reducer';
 import {
   auth,
   googleProvider,
   createUserProfileDocument,
+  getCurrentUserFavourites,
+  updateFavouritesInFirebase,
 } from '../firebase/firebase.utils';
 
 interface FetchSearchResults {
@@ -85,6 +87,7 @@ export const getUserSnapshot = async (
         type: ActionTypes.SIGN_IN_SUCCESS,
         payload: { id: userSnapshot.id, ...userSnapshot.data() },
       });
+      setFavouritesFromFirebase(userSnapshot.id, dispatch);
     }
   } catch (error) {
     dispatch({
@@ -125,6 +128,7 @@ export const signOut = async (
 export const addToFavourites = (
   favourites: Movie[],
   newFavourite: Movie,
+  currentUser: UserDetails | null,
   dispatch: React.Dispatch<Actions>
 ) => {
   const existingFavourite = favourites.find(
@@ -140,6 +144,7 @@ export const addToFavourites = (
     type: ActionTypes.ADD_TO_FAVOURITES,
     payload: [...favourites, newFavourite],
   });
+  updateFavouritesInFirebase(currentUser, [...favourites, newFavourite]);
 };
 
 export const checkUserSession = (dispatch: React.Dispatch<Actions>) => {
@@ -157,4 +162,27 @@ export const checkUserSession = (dispatch: React.Dispatch<Actions>) => {
       });
     }
   });
+};
+
+export const setFavouritesFromFirebase = async (
+  userId: string,
+  dispatch: React.Dispatch<Actions>
+) => {
+  try {
+    const favouritesRef = await getCurrentUserFavourites(userId);
+
+    if (favouritesRef) {
+      const favouritesSnapshot = await favouritesRef.get();
+
+      dispatch({
+        type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE_SUCCESS,
+        payload: favouritesSnapshot.data()?.favourites,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE_FAILURE,
+      payload: error.message,
+    });
+  }
 };

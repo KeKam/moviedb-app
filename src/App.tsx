@@ -5,6 +5,7 @@ import { useAppState } from './hooks/useAppState';
 import { checkUserSession } from './store/actions';
 import { Header } from './components/header/header';
 import { HomePage } from './pages/home-page/home-page';
+import { FavouritesPage } from './pages/favourites-page/favourites-page';
 import { GlobalStyle } from './components/global-style/global-style';
 
 export const App = () => {
@@ -20,6 +21,7 @@ export const App = () => {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
+        <Route exact path='/favourites' component={FavouritesPage} />
       </Switch>
     </div>
   );

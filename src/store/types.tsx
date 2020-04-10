@@ -13,6 +13,8 @@ export enum ActionTypes {
   SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS',
   SIGN_OUT_FAILURE = 'SIGN_OUT_FAILURE',
   ADD_TO_FAVOURITES = 'ADD_TO_FAVOURITES',
+  SET_FAVOURITES_FROM_FIREBASE_SUCCESS = 'SET_FAVOURITES_FROM_FIREBASE_SUCCESS',
+  SET_FAVOURITES_FROM_FIREBASE_FAILURE = 'SET_FAVOURITES_FROM_FIREBASE_FAILURE',
 }
 
 export type Actions =
@@ -59,4 +61,12 @@ export type Actions =
   | {
       type: ActionTypes.ADD_TO_FAVOURITES;
       payload: Movie[];
+    }
+  | {
+      type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE_SUCCESS;
+      payload: Movie[];
+    }
+  | {
+      type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE_FAILURE;
+      payload: string;
     };

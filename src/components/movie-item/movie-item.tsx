@@ -12,14 +12,18 @@ export interface MovieProps {
 export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
   const { state, dispatch } = useAppState();
   const { imdbID, Poster } = movie;
-  const { favourites } = state;
+  const { favourites, currentUser } = state;
 
   return (
     <S.Container>
       <div onClick={() => fetchMovie(imdbID, dispatch)}>
         <S.Poster src={Poster} alt='Poster' />
       </div>
-      <button onClick={() => addToFavourites(favourites, movie, dispatch)}>
+      <button
+        onClick={() =>
+          addToFavourites(favourites, movie, currentUser, dispatch)
+        }
+      >
         ADD TO FAVOURITES
       </button>
     </S.Container>

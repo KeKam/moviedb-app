@@ -2,6 +2,8 @@ import firebase, { User } from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import { UserDetails, Movie } from '../store/reducer';
+
 const config = {
   apiKey: 'AIzaSyDckAphmDO4_4EtbW6k94P3UfupSdXkzwE',
   authDomain: 'moviedb-app-60919.firebaseapp.com',
@@ -44,4 +46,39 @@ export const createUserProfileDocument = async (user: User | null) => {
     }
   }
   return userRef;
+};
+
+export const getCurrentUserFavourites = async (userId: string) => {
+  try {
+    const favouritesRef = firestore
+      .collection('favourites')
+      .where('userId', '==', userId);
+    const snapShot = await favouritesRef.get();
+
+    if (snapShot.empty) {
+      const favouritesDocRef = firestore.collection('favourites').doc();
+      await favouritesDocRef.set({ userId, favourites: [] });
+      return favouritesDocRef;
+    } else {
+      return snapShot.docs[0].ref;
+    }
+  } catch (error) {
+    console.log('Failed trying to get favourites', error);
+  }
+};
+
+export const updateFavouritesInFirebase = async (
+  currentUser: UserDetails | null,
+  favourites: Movie[]
+) => {
+  if (currentUser) {
+    try {
+      const favouritesRef = await getCurrentUserFavourites(currentUser.id);
+      if (favouritesRef) {
+        await favouritesRef.update({ favourites });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };

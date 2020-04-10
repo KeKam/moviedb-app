@@ -82,6 +82,7 @@ export const reducer = (state: AppState, action: Actions) => {
         loading: false,
         movie: action.payload,
       };
+    case ActionTypes.SET_FAVOURITES_FROM_FIREBASE_FAILURE:
     case ActionTypes.SIGN_IN_FAILURE:
     case ActionTypes.SIGN_OUT_FAILURE:
     case ActionTypes.SEARCH_MOVIES_FAILURE:
@@ -109,6 +110,12 @@ export const reducer = (state: AppState, action: Actions) => {
         currentUser: null,
       };
     case ActionTypes.ADD_TO_FAVOURITES:
+      return {
+        ...state,
+        errorMessage: null,
+        favourites: action.payload,
+      };
+    case ActionTypes.SET_FAVOURITES_FROM_FIREBASE_SUCCESS:
       return {
         ...state,
         errorMessage: null,
