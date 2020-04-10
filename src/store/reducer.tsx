@@ -116,6 +116,12 @@ export const reducer = (state: AppState, action: Actions) => {
         errorMessage: null,
         favourites: action.payload,
       };
+    case ActionTypes.REMOVE_FROM_FAVOURITES:
+      return {
+        ...state,
+        errorMessage: null,
+        favourites: action.payload,
+      };
     case ActionTypes.SET_FAVOURITES_FROM_FIREBASE_SUCCESS:
       return {
         ...state,

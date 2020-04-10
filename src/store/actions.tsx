@@ -135,16 +135,35 @@ export const addToFavourites = (
     (favourite) => favourite.imdbID === newFavourite.imdbID
   );
 
-  if (existingFavourite) {
-    return favourites.map((favourite) =>
-      favourite.imdbID === newFavourite.imdbID ? null : favourite
-    );
-  }
+  if (existingFavourite) return;
+
   dispatch({
     type: ActionTypes.ADD_TO_FAVOURITES,
     payload: [...favourites, newFavourite],
   });
   updateFavouritesInFirebase(currentUser, [...favourites, newFavourite]);
+};
+
+export const removeFromFavourites = (
+  favourites: Movie[],
+  favouriteToRemove: Movie,
+  currentUser: UserDetails | null,
+  dispatch: React.Dispatch<Actions>
+) => {
+  const existingFavourite = favourites.find(
+    (favourite) => favourite.imdbID === favouriteToRemove.imdbID
+  );
+
+  if (existingFavourite) {
+    const newFavourites = favourites.filter(
+      (favourite) => favourite.imdbID !== favouriteToRemove.imdbID
+    );
+    dispatch({
+      type: ActionTypes.REMOVE_FROM_FAVOURITES,
+      payload: newFavourites,
+    });
+    updateFavouritesInFirebase(currentUser, newFavourites);
+  }
 };
 
 export const checkUserSession = (dispatch: React.Dispatch<Actions>) => {
