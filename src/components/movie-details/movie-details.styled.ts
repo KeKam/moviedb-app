@@ -19,11 +19,10 @@ MovieDetailsStyles.DetailsContainer = styled.div`
   display: flex;
   align-items: center;
   width: 85%;
-  height: 70%;
-  padding: 0 20px 0 20px;
+  height: 85%;
+  padding: 0px 20px;
   margin: auto;
   border-radius: 15px;
-  background: white;
 
   @media screen and (min-width: 800px) {
     width: 70%;
@@ -31,9 +30,9 @@ MovieDetailsStyles.DetailsContainer = styled.div`
 `;
 
 MovieDetailsStyles.Details = styled.div`
-  font-size: 9px;
+  font-size: 8.5px;
   width: 50%;
-  height: 70%;
+  height: 65%;
   margin-left: 10px;
 
   @media screen and (min-width: 800px) {
@@ -45,12 +44,11 @@ MovieDetailsStyles.Details = styled.div`
 
 MovieDetailsStyles.Poster = styled.img`
   width: 50%;
-  height: 70%;
+  height: 65%;
 
   @media screen and (min-width: 800px) {
-    font-size: 15px;
-    width: 30%;
-    height: 80%;
+    width: 50%;
+    height: 85%;
   }
 `;
 

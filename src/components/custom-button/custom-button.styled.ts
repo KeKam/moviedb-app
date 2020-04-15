@@ -9,16 +9,16 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
   justify-content: center;
   background: ${(props) =>
     props.addToFavourites
-      ? 'green'
+      ? '#5cb85c'
       : props.removeFromFavourites
-      ? 'red'
-      : '#2b61a7'};
+      ? '#d9534f'
+      : '#428bca'};
   color: white;
-  width: 80%;
-  height: 15%;
+  width: 134.5px;
+  height: 40px;
   border: none;
-  border-radius: 30px;
-  margin: 33% auto 0 auto;
+  font-size: 15px;
+  border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
 `;

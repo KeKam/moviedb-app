@@ -5,33 +5,28 @@ export const MovieItemStyles = () => {};
 MovieItemStyles.Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto;
-  position: relative;
+  align-items: center;
+  color: white;
+  text-align: center;
+  background-color: rgb(24, 24, 24);
+  border-radius: 5px;
 
   @media screen and (min-width: 800px) {
-    margin: 0px 10px;
     min-width: 16vw;
   }
 `;
 
 MovieItemStyles.Poster = styled.img`
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 450px;
+  width: 80%;
+  height: 350px;
+  margin-top: 10%;
+  border: 5px solid #202020;
+  border-radius: 5px;
 `;
 
 MovieItemStyles.ButtonsContainer = styled.div`
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10%;
   width: 100%;
-  height: 99%;
-
-  @media screen and (min-width: 800px) {
-    display: none;
-
-    ${MovieItemStyles.Container}:hover & {
-      display: block;
-    }
-  }
 `;

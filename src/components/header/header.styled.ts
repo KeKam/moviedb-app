@@ -7,7 +7,7 @@ HeaderStyles.Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #282c34;
+  background-color: #000;
   height: 80px;
   font-size: 15px;
   color: white;

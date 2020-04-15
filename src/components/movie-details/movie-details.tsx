@@ -32,9 +32,7 @@ export const MovieDetails: React.FC = () => {
             <h4>Rating: {movie.imdbRating}</h4>
           </S.Details>
         </S.DetailsContainer>
-      ) : (
-        <h2>No movie</h2>
-      )}
+      ) : null}
     </S.Container>
   );
 };

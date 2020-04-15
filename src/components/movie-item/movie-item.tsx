@@ -21,8 +21,9 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
 
   return (
     <S.Container>
-      <div onClick={() => fetchMovie(imdbID, dispatch)}>
+      <div>
         <S.Poster src={Poster} alt={`Poster for the movie ${Title}`} />
+        <h2>{Title}</h2>
       </div>
       <S.ButtonsContainer>
         {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (
@@ -32,7 +33,7 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
               removeFromFavourites(favourites, movie, currentUser, dispatch)
             }
           >
-            REMOVE FROM FAVOURITES
+            ★
           </CustomButton>
         ) : (
           <CustomButton
@@ -41,12 +42,12 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
               addToFavourites(favourites, movie, currentUser, dispatch)
             }
           >
-            ADD TO FAVOURITES
+            ☆
           </CustomButton>
         )}
 
         <CustomButton onClick={() => fetchMovie(imdbID, dispatch)}>
-          INFORMATION
+          Movie Details
         </CustomButton>
       </S.ButtonsContainer>
     </S.Container>
