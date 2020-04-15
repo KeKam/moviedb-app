@@ -1,30 +1,22 @@
 import React from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
-import { removeFromFavourites } from '../../store/actions';
+import { MovieItem } from '../../components/movie-item/movie-item';
+import { MovieDetails } from '../../components/movie-details/movie-details';
+import { FavouritesPageStyles as S } from './favourites-page.styled';
 
 export const FavouritesPage: React.FC = () => {
-  const { state, dispatch } = useAppState();
-  const { favourites, currentUser } = state;
+  const { state } = useAppState();
+  const { favourites, movie } = state;
 
   return (
-    <div>
-      {favourites.map((favourite) => (
-        <div key={favourite.imdbID}>
-          <img
-            key={favourite.imdbID}
-            src={favourite.Poster}
-            alt={`The movie ${favourite.Title}`}
-          />
-          <button
-            onClick={() =>
-              removeFromFavourites(favourites, favourite, currentUser, dispatch)
-            }
-          >
-            REMOVE
-          </button>
-        </div>
-      ))}
-    </div>
+    <S.Container>
+      <S.Favourites>
+        {favourites.map((favourite, index) => {
+          return <MovieItem key={index} movie={favourite} />;
+        })}
+      </S.Favourites>
+      {movie ? <MovieDetails /> : null}
+    </S.Container>
   );
 };

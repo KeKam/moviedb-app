@@ -10,7 +10,7 @@ MovieItemStyles.Container = styled.div`
 
   @media screen and (min-width: 800px) {
     margin: 0px 10px;
-    width: 300px;
+    min-width: 16vw;
   }
 `;
 
