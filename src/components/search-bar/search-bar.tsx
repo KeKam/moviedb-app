@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
 import { fetchSearchMovies } from '../../store/actions';
@@ -8,18 +8,16 @@ export const SearchBar: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const { dispatch } = useAppState();
 
-  useEffect(() => {
-    fetchSearchMovies('man', dispatch);
-  }, [dispatch]);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(e.target.value);
   };
 
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault();
-    fetchSearchMovies(searchValue, dispatch);
-    resetInputField();
+  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      fetchSearchMovies(searchValue, dispatch);
+      resetInputField();
+    }
   };
 
   const resetInputField = (): void => {
@@ -28,12 +26,14 @@ export const SearchBar: React.FC = () => {
 
   return (
     <S.Container>
-      <form>
-        <input onChange={handleInputChange} value={searchValue} type='text' />
-        <button onClick={handleOnClick} type='submit'>
-          Search
-        </button>
-      </form>
+      <S.Title>Search For Any Movie</S.Title>
+      <S.Input
+        onChange={handleInputChange}
+        onKeyDown={handleOnKeyDown}
+        value={searchValue}
+        placeholder='Search movies...'
+        type='text'
+      />
     </S.Container>
   );
 };
