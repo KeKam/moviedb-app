@@ -7,22 +7,26 @@ SearchBarStyles.Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 25vh;
-  width: 80%;
+  height: 15vh;
+  width: 95%;
   margin: 2% auto;
   border-radius: 10px;
-  background-color: rgb(24, 24, 24);
+
+  @media screen and (min-width: 800px) {
+    width: 80%;
+  }
 `;
 
 SearchBarStyles.Input = styled.input`
   display: flex;
   position: relative;
-  width: 80%;
+  width: 60%;
   height: 15%;
   font-size: 1em;
   text-align: center;
   border: none;
   border-radius: 10px;
+  padding: 15px;
 `;
 
 SearchBarStyles.Title = styled.h2`

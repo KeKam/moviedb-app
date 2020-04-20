@@ -14,11 +14,18 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
       ? '#d9534f'
       : '#428bca'};
   color: white;
-  width: 134.5px;
-  height: 40px;
+  width: 80px;
+  height: 30px;
   border: none;
-  font-size: 15px;
+  font-size: 13px;
+  padding: 0;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+
+  @media screen and (min-width: 500px) {
+    width: 134.5px;
+    height: 40px;
+    font-size: 15px;
+  }
 `;

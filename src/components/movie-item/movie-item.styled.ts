@@ -12,16 +12,29 @@ MovieItemStyles.Container = styled.div`
   border-radius: 5px;
 
   @media screen and (min-width: 800px) {
-    min-width: 16vw;
+    min-width: 25%;
   }
 `;
 
 MovieItemStyles.Poster = styled.img`
-  width: 80%;
-  height: 350px;
+  width: 70%;
+  height: 175px;
   margin-top: 10%;
   border: 5px solid #202020;
   border-radius: 5px;
+
+  @media screen and (min-width: 500px) {
+    width: 80%;
+    height: 350px;
+  }
+`;
+
+MovieItemStyles.Title = styled.h2`
+  font-size: 13px;
+
+  @media screen and (min-width: 500px) {
+    font-size: 15px;
+  }
 `;
 
 MovieItemStyles.ButtonsContainer = styled.div`

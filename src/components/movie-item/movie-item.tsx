@@ -23,8 +23,8 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
     <S.Container>
       <div>
         <S.Poster src={Poster} alt={`Poster for the movie ${Title}`} />
-        <h2>{Title}</h2>
       </div>
+      <S.Title>{Title}</S.Title>
       <S.ButtonsContainer>
         {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (
           <CustomButton
@@ -47,7 +47,7 @@ export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
         )}
 
         <CustomButton onClick={() => fetchMovie(imdbID, dispatch)}>
-          Movie Details
+          Details
         </CustomButton>
       </S.ButtonsContainer>
     </S.Container>
