@@ -21,7 +21,7 @@ interface FetchMovieDetails extends MovieDetails {
   Error: string;
 }
 
-const OMDB_API_KEY = 'YOUR_API_KEY';
+const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
 export const fetchSearchMovies = async (
   searchValue: string,
