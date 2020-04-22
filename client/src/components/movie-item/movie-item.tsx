@@ -14,7 +14,7 @@ export interface MovieProps {
   movie: Movie;
 }
 
-export const MovieItem: React.FC<MovieProps> = ({ movie }) => {
+export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
   const { state, dispatch } = useAppState();
   const { imdbID, Poster, Title } = movie;
   const { favourites, currentUser } = state;

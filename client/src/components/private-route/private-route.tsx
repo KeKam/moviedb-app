@@ -7,10 +7,10 @@ interface PrivateRouteProps extends RouteProps {
   component: React.ComponentType<any>;
 }
 
-export const PrivateRoute: React.FC<PrivateRouteProps> = ({
+export const PrivateRoute = ({
   component: Component,
   ...rest
-}) => {
+}: PrivateRouteProps): JSX.Element => {
   const { state } = useAppState();
   const { currentUser } = state;
 

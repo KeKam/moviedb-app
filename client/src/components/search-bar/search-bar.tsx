@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
 import { fetchSearchMovies } from '../../store/actions';
 import { SearchBarStyles as S } from './search-bar.styled';
 
-export const SearchBar: React.FC = () => {
+export const SearchBar = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState('');
   const { dispatch } = useAppState();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(e.target.value);
   };
 
-  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       e.preventDefault();
       fetchSearchMovies(searchValue, dispatch);

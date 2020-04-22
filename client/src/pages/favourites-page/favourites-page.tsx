@@ -5,7 +5,7 @@ import { MovieItem } from '../../components/movie-item/movie-item';
 import { MovieDetails } from '../../components/movie-details/movie-details';
 import { FavouritesPageStyles as S } from './favourites-page.styled';
 
-export const FavouritesPage: React.FC = () => {
+export const FavouritesPage = (): JSX.Element => {
   const { state } = useAppState();
   const { favourites, movie } = state;
 

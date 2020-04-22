@@ -4,7 +4,7 @@ import { useAppState } from '../../hooks/useAppState';
 import { MovieItem } from '../movie-item/movie-item';
 import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 
-export const MoviesShowcase: React.FC = () => {
+export const MoviesShowcase = (): JSX.Element => {
   const { state } = useAppState();
   const { errorMessage, movies } = state;
   console.log('rendered');

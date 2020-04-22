@@ -9,7 +9,7 @@ import { FavouritesPage } from './pages/favourites-page/favourites-page';
 import { PrivateRoute } from './components/private-route/private-route';
 import { GlobalStyle } from './components/global-style/global-style';
 
-export const App = () => {
+export const App = (): JSX.Element => {
   const { dispatch } = useAppState();
 
   useEffect(() => {

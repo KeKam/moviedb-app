@@ -9,7 +9,9 @@ export interface ButtonProps
   removeFromFavourites?: boolean;
 }
 
-export const CustomButton: React.FC<ButtonProps> = ({
+export const CustomButton = ({
   children,
   ...buttonProps
-}) => <S.Container {...buttonProps}>{children}</S.Container>;
+}: ButtonProps): JSX.Element => (
+  <S.Container {...buttonProps}>{children}</S.Container>
+);

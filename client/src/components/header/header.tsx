@@ -4,7 +4,7 @@ import { signInWithGoogle, signOut } from '../../store/actions';
 import { useAppState } from '../../hooks/useAppState';
 import { HeaderStyles as S } from './header.styled';
 
-export const Header: React.FC = () => {
+export const Header = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const { state, dispatch } = useAppState();
   const { currentUser } = state;

@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { Dispatch } from 'react';
 import { User } from 'firebase';
 
 import { Actions, ActionTypes } from './types';
-import { MovieDetails, Movie, UserDetails } from '../store/reducer';
+import { MovieDetails, Movie, UserDetails } from './reducer';
 import {
   auth,
   googleProvider,
@@ -25,8 +26,8 @@ const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
 export const fetchSearchMovies = async (
   searchValue: string,
-  dispatch: React.Dispatch<Actions>
-): Promise<void> => {
+  dispatch: Dispatch<Actions>
+) => {
   dispatch({ type: ActionTypes.START_SEARCH_MOVIES });
 
   try {
@@ -49,10 +50,7 @@ export const fetchSearchMovies = async (
   }
 };
 
-export const fetchMovie = async (
-  id: string,
-  dispatch: React.Dispatch<Actions>
-): Promise<void> => {
+export const fetchMovie = async (id: string, dispatch: Dispatch<Actions>) => {
   dispatch({ type: ActionTypes.START_FETCH_MOVIE });
 
   try {
@@ -77,7 +75,7 @@ export const fetchMovie = async (
 
 export const getUserSnapshot = async (
   user: User | null,
-  dispatch: React.Dispatch<Actions>
+  dispatch: Dispatch<Actions>
 ) => {
   try {
     const userRef = await createUserProfileDocument(user);
@@ -97,9 +95,7 @@ export const getUserSnapshot = async (
   }
 };
 
-export const signInWithGoogle = async (
-  dispatch: React.Dispatch<Actions>
-): Promise<void> => {
+export const signInWithGoogle = async (dispatch: Dispatch<Actions>) => {
   try {
     const { user } = await auth.signInWithPopup(googleProvider);
     await getUserSnapshot(user, dispatch);
@@ -111,9 +107,7 @@ export const signInWithGoogle = async (
   }
 };
 
-export const signOut = async (
-  dispatch: React.Dispatch<Actions>
-): Promise<void> => {
+export const signOut = async (dispatch: Dispatch<Actions>) => {
   try {
     await auth.signOut();
     dispatch({ type: ActionTypes.SIGN_OUT_SUCCESS });
@@ -129,7 +123,7 @@ export const addToFavourites = (
   favourites: Movie[],
   newFavourite: Movie,
   currentUser: UserDetails | null,
-  dispatch: React.Dispatch<Actions>
+  dispatch: Dispatch<Actions>
 ) => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === newFavourite.imdbID
@@ -148,7 +142,7 @@ export const removeFromFavourites = (
   favourites: Movie[],
   favouriteToRemove: Movie,
   currentUser: UserDetails | null,
-  dispatch: React.Dispatch<Actions>
+  dispatch: Dispatch<Actions>
 ) => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === favouriteToRemove.imdbID
@@ -166,7 +160,7 @@ export const removeFromFavourites = (
   }
 };
 
-export const checkUserSession = (dispatch: React.Dispatch<Actions>) => {
+export const checkUserSession = (dispatch: Dispatch<Actions>) => {
   auth.onAuthStateChanged(async (user) => {
     try {
       if (user) {
@@ -185,7 +179,7 @@ export const checkUserSession = (dispatch: React.Dispatch<Actions>) => {
 
 export const setFavouritesFromFirebase = async (
   userId: string,
-  dispatch: React.Dispatch<Actions>
+  dispatch: Dispatch<Actions>
 ) => {
   try {
     const favouritesRef = await getCurrentUserFavourites(userId);

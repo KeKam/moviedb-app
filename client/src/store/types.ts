@@ -1,4 +1,4 @@
-import { MovieDetails, Movie, UserDetails } from '../store/reducer';
+import { MovieDetails, Movie, UserDetails } from './reducer';
 
 export enum ActionTypes {
   START_SEARCH_MOVIES = 'START_SEARCH_MOVIES',

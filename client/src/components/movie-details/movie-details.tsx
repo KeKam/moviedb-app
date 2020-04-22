@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
 import { MovieDetailsStyles as S } from './movie-details.styled';
 import { ActionTypes } from '../../store/types';
 
-export const MovieDetails: React.FC = () => {
+export const MovieDetails = (): JSX.Element => {
   const { state, dispatch } = useAppState();
   const { movie } = state;
 
-  const handleOnClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+  const handleOnClick = (e: MouseEvent<HTMLDivElement>): void => {
     e.preventDefault();
     dispatch({ type: ActionTypes.TOGGLE_DETAILS_POPUP });
   };
