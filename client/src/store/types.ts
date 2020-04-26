@@ -41,9 +41,6 @@ export type Actions =
       payload: string;
     }
   | {
-      type: ActionTypes.TOGGLE_DETAILS_POPUP;
-    }
-  | {
       type: ActionTypes.SIGN_IN_SUCCESS;
       payload: UserDetails;
     }

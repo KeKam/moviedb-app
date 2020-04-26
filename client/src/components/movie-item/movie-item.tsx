@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Movie } from '../../store/reducer';
 import {
@@ -16,8 +17,15 @@ export interface MovieProps {
 
 export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
   const { state, dispatch } = useAppState();
+  const history = useHistory();
   const { imdbID, Poster, Title } = movie;
   const { favourites, currentUser } = state;
+
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    fetchMovie(imdbID, dispatch);
+    history.push(`/details/${imdbID}`);
+  };
 
   return (
     <S.Container>
@@ -45,10 +53,7 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
             ☆
           </CustomButton>
         )}
-
-        <CustomButton onClick={() => fetchMovie(imdbID, dispatch)}>
-          Details
-        </CustomButton>
+        <CustomButton onClick={handleOnClick}>Details</CustomButton>
       </S.ButtonsContainer>
     </S.Container>
   );

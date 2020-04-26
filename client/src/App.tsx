@@ -6,6 +6,7 @@ import { checkUserSession } from './store/actions';
 import { Header } from './components/header/header';
 import { HomePage } from './pages/home-page/home-page';
 import { FavouritesPage } from './pages/favourites-page/favourites-page';
+import { MovieDetailsPage } from './pages/movie-details-page/movie-details-page';
 import { PrivateRoute } from './components/private-route/private-route';
 import { GlobalStyle } from './components/global-style/global-style';
 
@@ -22,6 +23,7 @@ export const App = (): JSX.Element => {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
+        <Route exact path='/details/:id' component={MovieDetailsPage} />
         <PrivateRoute exact path='/favourites' component={FavouritesPage} />
       </Switch>
     </div>
