@@ -24,6 +24,11 @@ export const App = (): JSX.Element => {
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route exact path='/details/:id' component={MovieDetailsPage} />
+        <Route
+          exact
+          path='/favourites/details/:id'
+          component={MovieDetailsPage}
+        />
         <PrivateRoute exact path='/favourites' component={FavouritesPage} />
       </Switch>
     </div>

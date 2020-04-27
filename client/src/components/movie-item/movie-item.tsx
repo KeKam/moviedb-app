@@ -24,7 +24,12 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     fetchMovie(imdbID, dispatch);
-    history.push(`/details/${imdbID}`);
+
+    if (history.location.pathname === '/favourites') {
+      history.push(`/favourites/details/${imdbID}`);
+    } else {
+      history.push(`/details/${imdbID}`);
+    }
   };
 
   return (

@@ -20,6 +20,7 @@ MovieDetailsPageStyles.DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
   @media screen and (min-width: 800px) {
     flex-direction: row;
@@ -31,13 +32,11 @@ MovieDetailsPageStyles.Poster = styled.img`
   margin: 10% auto 0 auto;
   border: 5px solid #202020;
   border-radius: 5px;
-  width: 60%;
-  height: 60%;
+  height: 175px;
 
   @media screen and (min-width: 800px) {
-    width: 70%;
-    height: 70%;
     margin: 0;
+    height: unset;
   }
 `;
 
@@ -48,6 +47,7 @@ MovieDetailsPageStyles.Details = styled.div`
 
   @media screen and (min-width: 800px) {
     margin-left: 2%;
+    max-width: 400px;
   }
 `;
 
@@ -67,4 +67,19 @@ MovieDetailsPageStyles.Text = styled.p`
     justify-content: left;
     text-align: unset;
   }
+`;
+
+MovieDetailsPageStyles.Button = styled.button`
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+`;
+
+MovieDetailsPageStyles.Arrow = styled.span`
+  font-size: 20px;
 `;

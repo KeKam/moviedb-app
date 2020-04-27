@@ -6,7 +6,7 @@ import { FavouritesPageStyles as S } from './favourites-page.styled';
 
 export const FavouritesPage = (): JSX.Element => {
   const { state } = useAppState();
-  const { favourites, movie } = state;
+  const { favourites } = state;
 
   return (
     <S.Container>

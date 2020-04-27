@@ -113,6 +113,11 @@ export const reducer = (state: AppState, action: Actions) => {
         errorMessage: null,
         favourites: action.payload,
       };
+    case ActionTypes.CLEAR_MOVIE_DETAILS:
+      return {
+        ...state,
+        movie: null,
+      };
     default:
       return state;
   }
