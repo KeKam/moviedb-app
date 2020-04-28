@@ -23,40 +23,50 @@ export const Header = (): JSX.Element => {
           )}
           {isOpen ? (
             <S.HamburgerMenu>
-              <S.MenuList>
-                <S.MenuItem>
-                  <S.Option to='/'>Home</S.Option>
-                </S.MenuItem>
-                <S.MenuItem>
-                  <S.Option to='/favourites'>Favourites</S.Option>
-                </S.MenuItem>
-                <S.MenuItem>
-                  {currentUser ? (
+              {currentUser ? (
+                <S.MenuList>
+                  <S.MenuItem>
+                    <S.Option to='/'>Home</S.Option>
+                  </S.MenuItem>
+                  <S.MenuItem>
+                    <S.Option to='/favourites'>Favourites</S.Option>
+                  </S.MenuItem>
+                  <S.MenuItem>
                     <S.Button onClick={() => signOut(dispatch)}>
                       Sign out
                     </S.Button>
-                  ) : (
+                  </S.MenuItem>
+                </S.MenuList>
+              ) : (
+                <S.MenuList>
+                  <S.MenuItem>
+                    <S.Option to='/'>Home</S.Option>
+                  </S.MenuItem>
+                  <S.MenuItem>
                     <S.Button onClick={() => signInWithGoogle(dispatch)}>
                       Sign in
                     </S.Button>
-                  )}
-                </S.MenuItem>
-              </S.MenuList>
+                  </S.MenuItem>
+                </S.MenuList>
+              )}
             </S.HamburgerMenu>
           ) : null}
         </div>
       </div>
-      <S.Options>
-        <S.Option to='/'>Home</S.Option>
-        <S.Option to='/favourites'>Favourites</S.Option>
-        {currentUser ? (
+      {currentUser ? (
+        <S.Options>
+          <S.Option to='/'>Home</S.Option>
+          <S.Option to='/favourites'>Favourites</S.Option>
           <S.Button onClick={() => signOut(dispatch)}>Sign out</S.Button>
-        ) : (
+        </S.Options>
+      ) : (
+        <S.Options>
+          <S.Option to='/'>Home</S.Option>
           <S.Button onClick={() => signInWithGoogle(dispatch)}>
             Sign in
           </S.Button>
-        )}
-      </S.Options>
+        </S.Options>
+      )}
     </S.Container>
   );
 };

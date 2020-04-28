@@ -38,28 +38,34 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
         <S.Poster src={Poster} alt={`Poster for the movie ${Title}`} />
       </div>
       <S.Title>{Title}</S.Title>
-      <S.ButtonsContainer>
-        {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (
-          <CustomButton
-            removeFromFavourites
-            onClick={() =>
-              removeFromFavourites(favourites, movie, currentUser, dispatch)
-            }
-          >
-            ★
-          </CustomButton>
-        ) : (
-          <CustomButton
-            addToFavourites
-            onClick={() =>
-              addToFavourites(favourites, movie, currentUser, dispatch)
-            }
-          >
-            ☆
-          </CustomButton>
-        )}
-        <CustomButton onClick={handleOnClick}>Details</CustomButton>
-      </S.ButtonsContainer>
+      {currentUser ? (
+        <S.ButtonsContainer>
+          {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (
+            <CustomButton
+              removeFromFavourites
+              onClick={() =>
+                removeFromFavourites(favourites, movie, currentUser, dispatch)
+              }
+            >
+              ★
+            </CustomButton>
+          ) : (
+            <CustomButton
+              addToFavourites
+              onClick={() =>
+                addToFavourites(favourites, movie, currentUser, dispatch)
+              }
+            >
+              ☆
+            </CustomButton>
+          )}
+          <CustomButton onClick={handleOnClick}>Details</CustomButton>
+        </S.ButtonsContainer>
+      ) : (
+        <S.ButtonsContainer>
+          <CustomButton onClick={handleOnClick}>Details</CustomButton>
+        </S.ButtonsContainer>
+      )}
     </S.Container>
   );
 };
