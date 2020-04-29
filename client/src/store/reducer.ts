@@ -118,6 +118,11 @@ export const reducer = (state: AppState, action: Actions) => {
         ...state,
         movie: null,
       };
+    case ActionTypes.CLEAR_SEARCH_MOVIES:
+      return {
+        ...state,
+        movies: [],
+      };
     default:
       return state;
   }

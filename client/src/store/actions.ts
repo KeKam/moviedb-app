@@ -26,14 +26,16 @@ const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
 export const fetchSearchMovies = async (
   searchValue: string,
+  page: number,
   dispatch: Dispatch<Actions>
 ) => {
   dispatch({ type: ActionTypes.START_SEARCH_MOVIES });
 
   try {
     const response = await axios.get<FetchSearchResults>(
-      `https://www.omdbapi.com/?s=${searchValue}&apikey=${OMDB_API_KEY}`
+      `https://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=${OMDB_API_KEY}`
     );
+
     if (response.data.Response === 'True') {
       dispatch({
         type: ActionTypes.SEARCH_MOVIES_SUCCESS,

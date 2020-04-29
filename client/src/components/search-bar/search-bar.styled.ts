@@ -7,9 +7,9 @@ SearchBarStyles.Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 15vh;
+  height: 25vh;
   width: 95%;
-  margin: 2% auto;
+  margin: 2% auto 0 auto;
   border-radius: 10px;
 
   @media screen and (min-width: 800px) {
@@ -36,4 +36,22 @@ SearchBarStyles.Title = styled.h2`
   @media screen and (min-width: 800px) {
     font-size: 30px;
   }
+`;
+
+SearchBarStyles.ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 5%;
+`;
+
+SearchBarStyles.Button = styled.button`
+  font-size: 15px;
+  background: rgb(24, 24, 24);
+  height: 40px;
+  width: 49%;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
 `;

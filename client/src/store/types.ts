@@ -15,6 +15,7 @@ export enum ActionTypes {
   REMOVE_FROM_FAVOURITES = 'REMOVE_FROM_FAVOURITES',
   SET_FAVOURITES_FROM_FIREBASE = 'SET_FAVOURITES_FROM_FIREBASE',
   CLEAR_MOVIE_DETAILS = 'CLEAR_MOVIE_DETAILS',
+  CLEAR_SEARCH_MOVIES = 'CLEAR_SEARCH_MOVIES',
 }
 
 export type Actions =
@@ -69,4 +70,7 @@ export type Actions =
     }
   | {
       type: ActionTypes.CLEAR_MOVIE_DETAILS;
+    }
+  | {
+      type: ActionTypes.CLEAR_SEARCH_MOVIES;
     };
