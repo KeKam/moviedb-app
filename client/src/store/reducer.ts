@@ -41,6 +41,8 @@ interface AppState {
   movie: MovieDetails | null;
   currentUser: UserDetails | null;
   favourites: Movie[];
+  searchTerm: string;
+  page: number;
 }
 
 export const initialState: AppState = {
@@ -50,6 +52,8 @@ export const initialState: AppState = {
   movie: null,
   currentUser: null,
   favourites: [],
+  searchTerm: '',
+  page: 0,
 };
 
 export const reducer = (state: AppState, action: Actions) => {
@@ -118,10 +122,16 @@ export const reducer = (state: AppState, action: Actions) => {
         ...state,
         movie: null,
       };
-    case ActionTypes.CLEAR_SEARCH_MOVIES:
+    case ActionTypes.SET_SEARCH_TERM:
+      return {
+        ...state,
+        searchTerm: action.payload,
+      };
+    case ActionTypes.SET_PAGE:
       return {
         ...state,
         movies: [],
+        page: action.payload,
       };
     default:
       return state;

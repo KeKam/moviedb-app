@@ -11,16 +11,16 @@ export const MoviesShowcase = (): JSX.Element => {
 
   return (
     <S.Container>
-      {!movies ? (
-        <div>Loading...</div>
-      ) : errorMessage ? (
-        <div>{errorMessage}</div>
-      ) : (
+      {movies.length >= 0 && !errorMessage ? (
         <S.Movies>
           {movies.map((movie, index) => {
             return <MovieItem key={index} movie={movie} />;
           })}
         </S.Movies>
+      ) : errorMessage ? (
+        <div>{errorMessage}</div>
+      ) : (
+        <div>Loading...</div>
       )}
     </S.Container>
   );

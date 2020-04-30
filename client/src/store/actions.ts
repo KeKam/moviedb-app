@@ -198,3 +198,19 @@ export const setFavouritesFromFirebase = async (
     console.log(error);
   }
 };
+
+export const setPage = (
+  pageState: number,
+  flag: string,
+  dispatch: Dispatch<Actions>
+) => {
+  if (flag === 'next') {
+    dispatch({ type: ActionTypes.SET_PAGE, payload: pageState + 1 });
+  } else if (flag === 'previous') {
+    dispatch({ type: ActionTypes.SET_PAGE, payload: pageState - 1 });
+  } else if (flag === 'start') {
+    dispatch({ type: ActionTypes.SET_PAGE, payload: 1 });
+  } else {
+    dispatch({ type: ActionTypes.SET_PAGE, payload: 0 });
+  }
+};
