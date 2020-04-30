@@ -201,14 +201,14 @@ export const setFavouritesFromFirebase = async (
 
 export const setPage = (
   pageState: number,
-  flag: string,
+  option: string,
   dispatch: Dispatch<Actions>
 ) => {
-  if (flag === 'next') {
+  if (option === 'next') {
     dispatch({ type: ActionTypes.SET_PAGE, payload: pageState + 1 });
-  } else if (flag === 'previous') {
+  } else if (option === 'previous') {
     dispatch({ type: ActionTypes.SET_PAGE, payload: pageState - 1 });
-  } else if (flag === 'start') {
+  } else if (option === 'start') {
     dispatch({ type: ActionTypes.SET_PAGE, payload: 1 });
   } else {
     dispatch({ type: ActionTypes.SET_PAGE, payload: 0 });
