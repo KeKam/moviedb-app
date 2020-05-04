@@ -37,7 +37,6 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
       <div>
         <S.Poster src={Poster} alt={`Poster for the movie ${Title}`} />
       </div>
-      <S.Title>{Title}</S.Title>
       {currentUser ? (
         <S.ButtonsContainer>
           {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (

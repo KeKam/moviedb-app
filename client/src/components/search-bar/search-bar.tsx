@@ -40,16 +40,20 @@ export const SearchBar = (): JSX.Element => {
         placeholder='Search movies...'
         type='text'
       />
-      {page >= 1 ? (
-        <S.ButtonsContainer>
-          <S.Button onClick={() => setPage(page, 'previous', dispatch)}>
-            Previous
-          </S.Button>
-          <S.Button onClick={() => setPage(page, 'next', dispatch)}>
-            Next
-          </S.Button>
-        </S.ButtonsContainer>
-      ) : null}
+      <S.ButtonsContainer>
+        <S.Button
+          disabled={page === 0 || page === 1}
+          onClick={() => setPage(page, 'previous', dispatch)}
+        >
+          Previous
+        </S.Button>
+        <S.Button
+          disabled={page === 0}
+          onClick={() => setPage(page, 'next', dispatch)}
+        >
+          Next
+        </S.Button>
+      </S.ButtonsContainer>
     </S.Container>
   );
 };

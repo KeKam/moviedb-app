@@ -7,7 +7,7 @@ HeaderStyles.Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000;
+  background: #000;
   border-bottom: 2px solid rgb(24, 24, 24);
   color: white;
 
@@ -42,6 +42,11 @@ HeaderStyles.Option = styled(Link)`
   font-size: 1.4em;
   color: white;
   text-decoration: none;
+  transition: all 0.5s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   @media screen and (min-width: 800px) {
     margin-right: 2%;
@@ -56,6 +61,11 @@ HeaderStyles.Button = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   @media screen and (min-width: 800px) {
     margin-right: 2%;
@@ -86,6 +96,7 @@ HeaderStyles.Cross = styled(HeaderStyles.Hamburger)`
   padding: 0.35em 0.45em;
   font-size: 3em;
   height: 65px;
+  transition: all 0.5s ease;
 `;
 
 HeaderStyles.HamburgerMenu = styled.div`

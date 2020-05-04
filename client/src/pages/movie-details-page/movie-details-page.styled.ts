@@ -78,6 +78,11 @@ MovieDetailsPageStyles.Button = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 MovieDetailsPageStyles.Arrow = styled.span`
