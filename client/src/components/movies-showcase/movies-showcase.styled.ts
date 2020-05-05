@@ -23,3 +23,7 @@ MoviesShowcaseStyles.Movies = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
+
+MoviesShowcaseStyles.Error = styled.h2`
+  color: white;
+`;

@@ -36,7 +36,7 @@ export interface UserDetails {
 
 interface AppState {
   loading: boolean;
-  movies: Movie[];
+  movies: Movie[] | null;
   errorMessage: null | string;
   movie: MovieDetails | null;
   currentUser: UserDetails | null;
@@ -47,7 +47,7 @@ interface AppState {
 
 export const initialState: AppState = {
   loading: true,
-  movies: [],
+  movies: null,
   errorMessage: null,
   movie: null,
   currentUser: null,
@@ -130,7 +130,7 @@ export const reducer = (state: AppState, action: Actions) => {
     case ActionTypes.SET_PAGE:
       return {
         ...state,
-        movies: [],
+        movies: null,
         page: action.payload,
       };
     default:

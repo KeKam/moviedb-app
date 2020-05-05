@@ -2,26 +2,26 @@ import React from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
 import { MovieItem } from '../movie-item/movie-item';
+import { Spinner } from '../spinner/spinner';
 import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 
 export const MoviesShowcase = (): JSX.Element => {
   const { state } = useAppState();
-  const { errorMessage, movies } = state;
-  console.log('rendered');
+  const { errorMessage, movies, loading } = state;
 
   return (
     <S.Container>
-      {movies.length >= 0 && !errorMessage ? (
+      {movies && !errorMessage ? (
         <S.Movies>
           {movies.map((movie, index) => {
             return <MovieItem key={index} movie={movie} />;
           })}
         </S.Movies>
       ) : errorMessage ? (
-        <div>{errorMessage}</div>
-      ) : (
-        <div>Loading...</div>
-      )}
+        <S.Error>{errorMessage}</S.Error>
+      ) : loading ? (
+        <Spinner />
+      ) : null}
     </S.Container>
   );
 };

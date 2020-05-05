@@ -2,13 +2,14 @@ import React, { MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/useAppState';
-import { MovieDetailsPageStyles as S } from './movie-details-page.styled';
 import { ActionTypes } from '../../store/types';
+import { Spinner } from '../../components/spinner/spinner';
+import { MovieDetailsPageStyles as S } from './movie-details-page.styled';
 
 export const MovieDetailsPage = (): JSX.Element => {
   const { state, dispatch } = useAppState();
   const history = useHistory();
-  const { movie } = state;
+  const { movie, loading } = state;
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export const MovieDetailsPage = (): JSX.Element => {
 
   return (
     <S.Container>
-      {movie ? (
+      {movie && !loading ? (
         <S.DetailsContainer>
           <S.Button onClick={handleOnClick}>
             <S.Arrow>&#8592;</S.Arrow> Go back
@@ -40,7 +41,9 @@ export const MovieDetailsPage = (): JSX.Element => {
             </div>
           </S.Details>
         </S.DetailsContainer>
-      ) : null}
+      ) : (
+        <Spinner />
+      )}
     </S.Container>
   );
 };
