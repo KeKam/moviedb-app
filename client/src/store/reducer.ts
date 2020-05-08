@@ -46,7 +46,7 @@ interface AppState {
 }
 
 export const initialState: AppState = {
-  loading: true,
+  loading: false,
   movies: null,
   errorMessage: null,
   movie: null,

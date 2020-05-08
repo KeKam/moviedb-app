@@ -7,7 +7,7 @@ import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 
 export const MoviesShowcase = (): JSX.Element => {
   const { state } = useAppState();
-  const { errorMessage, movies, loading } = state;
+  const { errorMessage, movies, loading, page } = state;
 
   return (
     <S.Container>
@@ -17,9 +17,9 @@ export const MoviesShowcase = (): JSX.Element => {
             return <MovieItem key={index} movie={movie} />;
           })}
         </S.Movies>
-      ) : errorMessage ? (
+      ) : errorMessage && page > 0 ? (
         <S.Error>{errorMessage}</S.Error>
-      ) : loading ? (
+      ) : loading && !movies ? (
         <Spinner />
       ) : null}
     </S.Container>

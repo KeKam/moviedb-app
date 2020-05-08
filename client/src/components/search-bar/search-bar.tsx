@@ -11,7 +11,7 @@ export const SearchBar = (): JSX.Element => {
 
   useEffect(() => {
     fetchSearchMovies(searchTerm, page, dispatch);
-  }, [page]);
+  }, [searchTerm, page, dispatch]);
 
   const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     dispatch({
