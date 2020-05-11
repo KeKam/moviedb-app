@@ -26,19 +26,19 @@ export const MovieDetailsPage = (): JSX.Element => {
           </S.Button>
           <S.Poster src={movie.Poster} alt={`The movie: ${movie.Title}`} />
           <S.Details>
-            <div>
-              <S.Title>
-                {movie.Title} ({movie.Year})
-              </S.Title>
-              <S.Text>Runtime: {movie.Runtime}</S.Text>
-              <S.Text>Released: {movie.Released}</S.Text>
-              <S.Text>Genre: {movie.Genre}</S.Text>
-              <S.Text>Director: {movie.Director}</S.Text>
-              <S.Text>Writers: {movie.Writer}</S.Text>
-              <S.Text>Actors: {movie.Actors}</S.Text>
-              <S.Text>Plot: {movie.Plot}</S.Text>
-              <S.Text>Rating: {movie.imdbRating}</S.Text>
-            </div>
+            {/* <div> */}
+            <S.Title>
+              {movie.Title} ({movie.Year})
+            </S.Title>
+            <S.Text>Runtime: {movie.Runtime}</S.Text>
+            <S.Text>Released: {movie.Released}</S.Text>
+            <S.Text>Genre: {movie.Genre}</S.Text>
+            <S.Text>Director: {movie.Director}</S.Text>
+            <S.Text>Writers: {movie.Writer}</S.Text>
+            <S.Text>Actors: {movie.Actors}</S.Text>
+            <S.Text>Plot: {movie.Plot}</S.Text>
+            <S.Text>Rating: {movie.imdbRating}</S.Text>
+            {/* </div> */}
           </S.Details>
         </S.DetailsContainer>
       ) : (

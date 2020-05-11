@@ -17,13 +17,13 @@ MovieItemStyles.Container = styled.div`
 `;
 
 MovieItemStyles.Poster = styled.img`
-  width: 70%;
+  width: 60%;
   height: 175px;
   margin-top: 10%;
   border: 5px solid #202020;
   border-radius: 10px;
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 600px) {
     width: 80%;
     height: 350px;
   }

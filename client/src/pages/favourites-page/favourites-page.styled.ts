@@ -14,12 +14,12 @@ FavouritesPageStyles.Favourites = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 
-  @media screen and (max-width: 799px) and (min-width: 500px) {
-    grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 1234px) and (min-width: 800px) {
+    grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: 20px;
   }
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 1235px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;

@@ -54,7 +54,9 @@ SearchBarStyles.Button = styled.button`
   transition: all 0.5s ease;
   margin: 0 10px;
 
-  &:hover {
-    background: ${(props) => (props.disabled ? '' : 'rgb(32, 32, 32, 0.5)')};
+  @media screen and (min-width: 800px) {
+    &:hover {
+      background: ${(props) => (props.disabled ? '' : 'rgb(32, 32, 32, 0.5)')};
+    }
   }
 `;

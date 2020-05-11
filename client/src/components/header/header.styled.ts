@@ -44,12 +44,12 @@ HeaderStyles.Option = styled(Link)`
   text-decoration: none;
   transition: all 0.5s ease;
 
-  &:hover {
-    opacity: 0.5;
-  }
-
   @media screen and (min-width: 800px) {
     margin-right: 2%;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -63,12 +63,12 @@ HeaderStyles.Button = styled.button`
   cursor: pointer;
   transition: all 0.5s ease;
 
-  &:hover {
-    opacity: 0.5;
-  }
-
   @media screen and (min-width: 800px) {
     margin-right: 2%;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `;
 

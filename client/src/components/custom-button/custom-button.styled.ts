@@ -14,7 +14,7 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
       ? 'rgb(217, 83, 79)'
       : 'rgb(66, 139, 202)'};
   color: white;
-  width: 70px;
+  width: 45%;
   height: 30px;
   border: none;
   font-size: 13px;
@@ -33,7 +33,7 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
         : 'rgb(66, 139, 202, 0.5)'};
   }
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 600px) {
     width: 134.5px;
     height: 40px;
     font-size: 15px;

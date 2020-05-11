@@ -41,8 +41,8 @@ MovieDetailsPageStyles.Poster = styled.img`
 `;
 
 MovieDetailsPageStyles.Details = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: block;
+  /* flex-direction: column; */
   margin: 0 2%;
 
   @media screen and (min-width: 800px) {
