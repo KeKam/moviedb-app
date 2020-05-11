@@ -208,9 +208,7 @@ export const setPage = (
     dispatch({ type: ActionTypes.SET_PAGE, payload: pageState + 1 });
   } else if (option === 'previous') {
     dispatch({ type: ActionTypes.SET_PAGE, payload: pageState - 1 });
-  } else if (option === 'start') {
-    dispatch({ type: ActionTypes.SET_PAGE, payload: 1 });
   } else {
-    dispatch({ type: ActionTypes.SET_PAGE, payload: 0 });
+    dispatch({ type: ActionTypes.SET_PAGE, payload: 1 });
   }
 };

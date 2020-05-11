@@ -63,6 +63,7 @@ export const reducer = (state: AppState, action: Actions) => {
       return {
         ...state,
         loading: true,
+        movies: null,
         errorMessage: null,
       };
     case ActionTypes.SEARCH_MOVIES_SUCCESS:
@@ -130,7 +131,6 @@ export const reducer = (state: AppState, action: Actions) => {
     case ActionTypes.SET_PAGE:
       return {
         ...state,
-        movies: null,
         page: action.payload,
       };
     default:

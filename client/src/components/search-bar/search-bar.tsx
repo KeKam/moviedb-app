@@ -1,4 +1,4 @@
-import React, { useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 
 import { useAppState } from '../../hooks/useAppState';
 import { fetchSearchMovies, setPage } from '../../store/actions';
@@ -7,25 +7,23 @@ import { ActionTypes } from '../../store/types';
 
 export const SearchBar = (): JSX.Element => {
   const { state, dispatch } = useAppState();
-  const { searchTerm, page } = state;
+  const [searchValue, setSearchValue] = useState('');
+  const { searchTerm, page, loading } = state;
 
   useEffect(() => {
     fetchSearchMovies(searchTerm, page, dispatch);
   }, [searchTerm, page, dispatch]);
 
   const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    dispatch({
-      type: ActionTypes.SET_SEARCH_TERM,
-      payload: e.target.value,
-    });
-
-    if (page !== 0) {
-      setPage(page, 'default', dispatch);
-    }
+    setSearchValue(e.target.value);
   };
 
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
+      dispatch({
+        type: ActionTypes.SET_SEARCH_TERM,
+        payload: searchValue,
+      });
       setPage(page, 'start', dispatch);
     }
   };
@@ -36,19 +34,19 @@ export const SearchBar = (): JSX.Element => {
       <S.Input
         onChange={handleOnInputChange}
         onKeyDown={handleOnKeyDown}
-        value={searchTerm}
+        value={searchValue}
         placeholder='Search movies...'
         type='text'
       />
       <S.ButtonsContainer>
         <S.Button
-          disabled={page === 0 || page === 1}
+          disabled={page === 0 || page === 1 || loading}
           onClick={() => setPage(page, 'previous', dispatch)}
         >
           Previous
         </S.Button>
         <S.Button
-          disabled={page === 0}
+          disabled={page === 0 || loading}
           onClick={() => setPage(page, 'next', dispatch)}
         >
           Next
