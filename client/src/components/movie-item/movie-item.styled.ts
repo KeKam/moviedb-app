@@ -17,15 +17,16 @@ MovieItemStyles.Container = styled.div`
 `;
 
 MovieItemStyles.Poster = styled.img`
-  width: 60%;
+  width: 70%;
   height: 175px;
   margin-top: 10%;
   border: 5px solid #202020;
   border-radius: 10px;
 
   @media screen and (min-width: 600px) {
-    width: 80%;
+    width: 240px;
     height: 350px;
+    max-width: 240px;
   }
 `;
 

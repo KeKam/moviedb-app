@@ -10,6 +10,7 @@ HeaderStyles.Container = styled.div`
   background: #000;
   border-bottom: 2px solid rgb(24, 24, 24);
   color: white;
+  height: 80px;
 
   @media screen and (min-width: 800px) {
     justify-content: unset;
@@ -23,8 +24,8 @@ HeaderStyles.Title = styled(Link)`
 
   @media screen and (min-width: 800px) {
     display: flex;
-    min-width: 10vw;
-    margin-left: 18%;
+    width: 10%;
+    margin-left: 25px;
   }
 `;
 
@@ -33,23 +34,29 @@ HeaderStyles.Options = styled.div`
 
   @media screen and (min-width: 800px) {
     display: flex;
-    width: 100%;
+    width: 90%;
+    height: 100%;
     justify-content: flex-end;
+    align-items: center;
   }
+`;
+
+HeaderStyles.OptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
 `;
 
 HeaderStyles.Option = styled(Link)`
   font-size: 1.4em;
   color: white;
   text-decoration: none;
-  transition: all 0.5s ease;
 
   @media screen and (min-width: 800px) {
-    margin-right: 2%;
-
-    &:hover {
-      opacity: 0.5;
-    }
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    height: 100%;
   }
 `;
 
@@ -61,14 +68,10 @@ HeaderStyles.Button = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  transition: all 0.5s ease;
 
   @media screen and (min-width: 800px) {
-    margin-right: 2%;
-
-    &:hover {
-      opacity: 0.5;
-    }
+    margin-right: 25px;
+    height: 100%;
   }
 `;
 
@@ -103,6 +106,7 @@ HeaderStyles.HamburgerMenu = styled.div`
   z-index: 1000000;
   font-weight: bold;
   font-size: 0.8em;
+  top: 75px;
   left: 0;
   width: 100%;
   position: absolute;

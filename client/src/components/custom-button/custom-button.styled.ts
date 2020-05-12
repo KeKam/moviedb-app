@@ -24,18 +24,21 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
   cursor: pointer;
   transition: all 0.5s ease;
 
-  &:hover {
-    background: ${(props) =>
-      props.addToFavourites
-        ? 'rgb(92, 184, 92, 0.5)'
-        : props.removeFromFavourites
-        ? 'rgb(217, 83, 79, 0.5)'
-        : 'rgb(66, 139, 202, 0.5)'};
-  }
-
   @media screen and (min-width: 600px) {
     width: 134.5px;
     height: 40px;
     font-size: 15px;
+    margin: 10px;
+  }
+
+  @media screen and (min-width: 800px) {
+    &:hover {
+      background: ${(props) =>
+        props.addToFavourites
+          ? 'rgb(92, 184, 92, 0.5)'
+          : props.removeFromFavourites
+          ? 'rgb(217, 83, 79, 0.5)'
+          : 'rgb(66, 139, 202, 0.5)'};
+    }
   }
 `;

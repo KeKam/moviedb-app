@@ -10,9 +10,10 @@ MovieDetailsPageStyles.Container = styled.div`
   background-color: rgb(24, 24, 24);
   border-radius: 5px;
   padding: 2%;
+  position: relative;
 
   @media screen and (min-width: 800px) {
-    margin: 2%;
+    margin: 4% 2.5%;
   }
 `;
 
@@ -20,7 +21,6 @@ MovieDetailsPageStyles.DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 
   @media screen and (min-width: 800px) {
     flex-direction: row;
@@ -33,16 +33,17 @@ MovieDetailsPageStyles.Poster = styled.img`
   border: 5px solid #202020;
   border-radius: 5px;
   height: 175px;
+  width: 125px;
 
   @media screen and (min-width: 800px) {
     margin: 0;
-    height: unset;
+    height: 350px;
+    width: 240px;
   }
 `;
 
 MovieDetailsPageStyles.Details = styled.div`
   display: block;
-  /* flex-direction: column; */
   margin: 0 2%;
 
   @media screen and (min-width: 800px) {
@@ -72,16 +73,20 @@ MovieDetailsPageStyles.Text = styled.p`
 MovieDetailsPageStyles.Button = styled.button`
   font-size: 16px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   background: none;
   border: none;
   color: white;
   cursor: pointer;
   transition: all 0.5s ease;
 
-  &:hover {
-    opacity: 0.5;
+  @media screen and (min-width: 800px) {
+    right: 20px;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `;
 

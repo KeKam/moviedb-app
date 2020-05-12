@@ -19,14 +19,13 @@ export const MovieDetailsPage = (): JSX.Element => {
 
   return (
     <S.Container>
+      <S.Button onClick={handleOnClick}>
+        <S.Arrow>&#8592;</S.Arrow> Go back
+      </S.Button>
       {movie && !loading ? (
         <S.DetailsContainer>
-          <S.Button onClick={handleOnClick}>
-            <S.Arrow>&#8592;</S.Arrow> Go back
-          </S.Button>
           <S.Poster src={movie.Poster} alt={`The movie: ${movie.Title}`} />
           <S.Details>
-            {/* <div> */}
             <S.Title>
               {movie.Title} ({movie.Year})
             </S.Title>
@@ -38,7 +37,6 @@ export const MovieDetailsPage = (): JSX.Element => {
             <S.Text>Actors: {movie.Actors}</S.Text>
             <S.Text>Plot: {movie.Plot}</S.Text>
             <S.Text>Rating: {movie.imdbRating}</S.Text>
-            {/* </div> */}
           </S.Details>
         </S.DetailsContainer>
       ) : (
