@@ -1,4 +1,4 @@
-import firebase, { User } from 'firebase';
+import firebase, { User } from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
