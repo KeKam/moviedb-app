@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { App } from './App';
 import { AppStateProvider } from './contexts/app.context';
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -13,3 +14,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
+
+serviceWorker.register();
