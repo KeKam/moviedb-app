@@ -55,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
 app.post('/', async (req: Request, res: Response) => {
   try {
     const response = await axios.get<FetchSearchResults>(
-      `https://www.omdbapi.com/?s=${req.body.searchValue}&page=${req.body.page}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
+      `https://www.omdbapi.com/?s=${req.body.searchValue}&page=${req.body.page}&apikey=${process.env.OMDB_API_KEY}`
     );
     res.status(200).send(response.data);
   } catch (error) {
@@ -68,7 +68,7 @@ app.post(
   async (req: Request, res: Response) => {
     try {
       const response = await axios.get<FetchMovieDetails>(
-        `https://www.omdbapi.com/?i=${req.body.id}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
+        `https://www.omdbapi.com/?i=${req.body.id}&apikey=${process.env.OMDB_API_KEY}`
       );
       res.status(200).send(response.data);
     } catch (error) {
