@@ -9,6 +9,7 @@ import {
 } from '../../store/actions';
 import { useAppState } from '../../hooks/useAppState';
 import { CustomButton } from '../custom-button/custom-button';
+import missingPoster from '../../images/missing-poster.png';
 import { MovieItemStyles as S } from './movie-item.styled';
 
 export interface MovieProps {
@@ -32,10 +33,19 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
     }
   };
 
+  const handleOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = missingPoster;
+  };
+
   return (
     <S.Container>
       <div>
-        <S.Poster src={Poster} alt={`Poster for the movie ${Title}`} />
+        <S.Poster
+          src={Poster}
+          onError={handleOnError}
+          alt={`Poster for the movie ${Title}`}
+        />
       </div>
       {currentUser ? (
         <S.ButtonsContainer>

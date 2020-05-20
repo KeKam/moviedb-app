@@ -17,15 +17,15 @@ MovieItemStyles.Container = styled.div`
 `;
 
 MovieItemStyles.Poster = styled.img`
-  width: 70%;
+  width: 60%;
   height: 175px;
   margin-top: 10%;
   border: 5px solid #202020;
   border-radius: 10px;
 
   @media screen and (min-width: 600px) {
-    width: 240px;
-    height: 350px;
+    width: 80%;
+    height: 330px;
     max-width: 240px;
   }
 `;
@@ -35,4 +35,8 @@ MovieItemStyles.ButtonsContainer = styled.div`
   justify-content: space-evenly;
   margin: 5% 0 10% 0;
   width: 100%;
+`;
+
+MovieItemStyles.PosterContainer = styled.div`
+  width: 70%;
 `;

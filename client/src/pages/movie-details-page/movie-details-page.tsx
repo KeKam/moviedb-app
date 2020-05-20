@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useAppState } from '../../hooks/useAppState';
 import { ActionTypes } from '../../store/types';
 import { Spinner } from '../../components/spinner/spinner';
+import missingPoster from '../../images/missing-poster.png';
 import { MovieDetailsPageStyles as S } from './movie-details-page.styled';
 
 export const MovieDetailsPage = (): JSX.Element => {
@@ -17,6 +18,11 @@ export const MovieDetailsPage = (): JSX.Element => {
     dispatch({ type: ActionTypes.CLEAR_MOVIE_DETAILS });
   };
 
+  const handleOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = missingPoster;
+  };
+
   return (
     <S.Container>
       <S.Button onClick={handleOnClick}>
@@ -24,7 +30,11 @@ export const MovieDetailsPage = (): JSX.Element => {
       </S.Button>
       {movie && !loading ? (
         <S.DetailsContainer>
-          <S.Poster src={movie.Poster} alt={`The movie: ${movie.Title}`} />
+          <S.Poster
+            src={movie.Poster}
+            onError={handleOnError}
+            alt={`The movie: ${movie.Title}`}
+          />
           <S.Details>
             <S.Title>
               {movie.Title} ({movie.Year})
