@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import { User } from 'firebase';
 
 import { Actions, ActionTypes } from './types';
-import { MovieDetails, Movie, UserDetails } from './reducer';
+import { Movie, UserDetails } from './reducer';
 import {
   auth,
   googleProvider,
@@ -12,29 +12,21 @@ import {
   updateFavouritesInFirebase,
 } from '../firebase/firebase.utils';
 
-interface FetchSearchResults {
-  Search: [];
-  Response: string;
-  Error: string;
-}
-
-interface FetchMovieDetails extends MovieDetails {
-  Error: string;
-}
-
-const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-
 export const fetchSearchMovies = async (
   searchValue: string,
   page: number,
   dispatch: Dispatch<Actions>
 ) => {
   dispatch({ type: ActionTypes.START_SEARCH_MOVIES });
-
   try {
-    const response = await axios.get<FetchSearchResults>(
-      `https://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=${OMDB_API_KEY}`
-    );
+    const response = await axios({
+      method: 'post',
+      url: 'search',
+      data: {
+        page,
+        searchValue,
+      },
+    });
 
     if (response.data.Response === 'True') {
       dispatch({
@@ -54,11 +46,15 @@ export const fetchSearchMovies = async (
 
 export const fetchMovie = async (id: string, dispatch: Dispatch<Actions>) => {
   dispatch({ type: ActionTypes.START_FETCH_MOVIE });
-
   try {
-    const response = await axios.get<FetchMovieDetails>(
-      `https://www.omdbapi.com/?i=${id}&apikey=${OMDB_API_KEY}`
-    );
+    const response = await axios({
+      method: 'post',
+      url: id,
+      data: {
+        id,
+      },
+    });
+
     if (response.data.Response === 'True') {
       dispatch({
         type: ActionTypes.FETCH_MOVIE_SUCCESS,
