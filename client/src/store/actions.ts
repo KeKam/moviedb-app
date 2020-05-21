@@ -21,7 +21,7 @@ export const fetchSearchMovies = async (
   try {
     const response = await axios({
       method: 'post',
-      url: '/',
+      url: '/search',
       data: {
         page,
         searchValue,
