@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 export const HeaderStyles = () => {};
 
 HeaderStyles.Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: #000;
   border-bottom: 2px solid rgb(24, 24, 24);
   color: white;
-  height: 80px;
 
   @media screen and (min-width: 800px) {
-    justify-content: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -21,11 +19,12 @@ HeaderStyles.Title = styled(Link)`
   text-decoration: none;
   color: white;
   text-align: center;
+  padding: 4px 0;
 
   @media screen and (min-width: 800px) {
     display: flex;
     width: 10%;
-    margin-left: 25px;
+    margin: 0 25px;
   }
 `;
 
@@ -34,7 +33,6 @@ HeaderStyles.Options = styled.div`
 
   @media screen and (min-width: 800px) {
     display: flex;
-    width: 90%;
     height: 100%;
     justify-content: flex-end;
     align-items: center;
@@ -81,7 +79,7 @@ HeaderStyles.Hamburger = styled.div`
   top: 0;
   right: 0;
   margin: 0;
-  padding: 0.8em;
+  padding: 0.8em 1em;
   color: #ffffff;
   border: 0;
   font-size: 1.4em;
@@ -96,17 +94,15 @@ HeaderStyles.Hamburger = styled.div`
 `;
 
 HeaderStyles.Cross = styled(HeaderStyles.Hamburger)`
-  padding: 0.35em 0.45em;
+  padding: 0.36em 0.45em 0 0.45em;
   font-size: 3em;
-  height: 65px;
-  transition: all 0.5s ease;
 `;
 
 HeaderStyles.HamburgerMenu = styled.div`
   z-index: 1000000;
   font-weight: bold;
   font-size: 0.8em;
-  top: 75px;
+  top: 76px;
   left: 0;
   width: 100%;
   position: absolute;

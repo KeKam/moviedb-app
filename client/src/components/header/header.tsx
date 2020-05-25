@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { SearchBar } from '../search-bar/search-bar';
 import { signInWithGoogle, signOut } from '../../store/actions';
 import { useAppState } from '../../hooks/useAppState';
 import { HeaderStyles as S } from './header.styled';
@@ -51,6 +52,7 @@ export const Header = (): JSX.Element => {
           </S.HamburgerMenu>
         ) : null}
       </div>
+      <SearchBar />
       <S.Options>
         <S.Option to='/'>Home</S.Option>
         {currentUser ? (

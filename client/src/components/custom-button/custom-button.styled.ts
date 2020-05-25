@@ -28,7 +28,7 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
     width: 134.5px;
     height: 40px;
     font-size: 15px;
-    margin: 10px;
+    margin: 0 10px;
   }
 
   @media screen and (min-width: 800px) {

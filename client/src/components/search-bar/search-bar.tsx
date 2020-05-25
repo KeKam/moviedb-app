@@ -1,4 +1,5 @@
 import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/useAppState';
 import { fetchSearchMovies, setPage } from '../../store/actions';
@@ -8,7 +9,9 @@ import { ActionTypes } from '../../store/types';
 export const SearchBar = (): JSX.Element => {
   const { state, dispatch } = useAppState();
   const [searchValue, setSearchValue] = useState('');
-  const { searchTerm, page, loading } = state;
+  const history = useHistory();
+  const { pathname } = history.location;
+  const { searchTerm, page } = state;
 
   useEffect(() => {
     fetchSearchMovies(searchTerm, page, dispatch);
@@ -30,28 +33,15 @@ export const SearchBar = (): JSX.Element => {
 
   return (
     <S.Container>
-      <S.Title>Search For Any Movie</S.Title>
-      <S.Input
-        onChange={handleOnInputChange}
-        onKeyDown={handleOnKeyDown}
-        value={searchValue}
-        placeholder='Search movies...'
-        type='text'
-      />
-      <S.ButtonsContainer>
-        <S.Button
-          disabled={page === 0 || page === 1 || loading}
-          onClick={() => setPage(page, 'previous', dispatch)}
-        >
-          Previous
-        </S.Button>
-        <S.Button
-          disabled={page === 0 || loading}
-          onClick={() => setPage(page, 'next', dispatch)}
-        >
-          Next
-        </S.Button>
-      </S.ButtonsContainer>
+      {pathname !== '/favourites' ? (
+        <S.Input
+          onChange={handleOnInputChange}
+          onKeyDown={handleOnKeyDown}
+          value={searchValue}
+          placeholder='Search movies...'
+          type='text'
+        />
+      ) : null}
     </S.Container>
   );
 };

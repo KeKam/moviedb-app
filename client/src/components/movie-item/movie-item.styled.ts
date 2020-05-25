@@ -9,7 +9,7 @@ MovieItemStyles.Container = styled.div`
   color: white;
   text-align: center;
   background: rgb(24, 24, 24);
-  border-radius: 10px;
+  border-radius: 5px;
 
   @media screen and (min-width: 800px) {
     min-width: 25%;
@@ -21,7 +21,6 @@ MovieItemStyles.Poster = styled.img`
   height: 175px;
   margin-top: 10%;
   border: 5px solid #202020;
-  border-radius: 10px;
 
   @media screen and (min-width: 600px) {
     width: 80%;

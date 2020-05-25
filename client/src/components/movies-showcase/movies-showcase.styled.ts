@@ -9,6 +9,34 @@ MoviesShowcaseStyles.Container = styled.div`
   margin: 4% 2.5%;
 `;
 
+MoviesShowcaseStyles.ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 4%;
+`;
+
+MoviesShowcaseStyles.Button = styled.button`
+  font-size: 15px;
+  background: rgb(32, 32, 32);
+  height: 40px;
+  width: 45%;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  opacity: ${(props) => (props.disabled ? '0.5' : '1')};
+  transition: all 0.5s ease;
+  margin: 0 10px;
+  padding: 0;
+
+  @media screen and (min-width: 800px) {
+    &:hover {
+      background: ${(props) => (props.disabled ? '' : 'rgb(32, 32, 32, 0.5)')};
+    }
+  }
+`;
+
 MoviesShowcaseStyles.Movies = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
