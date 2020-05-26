@@ -52,20 +52,22 @@ export const Header = (): JSX.Element => {
           </S.HamburgerMenu>
         ) : null}
       </div>
-      <SearchBar />
-      <S.Options>
-        <S.Option to='/'>Home</S.Option>
-        {currentUser ? (
-          <S.OptionContainer>
-            <S.Option to='/favourites'>Favourites</S.Option>
-            <S.Button onClick={() => signOut(dispatch)}>Sign out</S.Button>
-          </S.OptionContainer>
-        ) : (
-          <S.Button onClick={() => signInWithGoogle(dispatch)}>
-            Sign in
-          </S.Button>
-        )}
-      </S.Options>
+      <S.OptionsContainer>
+        <SearchBar />
+        <S.Options>
+          <S.Option to='/'>Home</S.Option>
+          {currentUser ? (
+            <S.Wrapper>
+              <S.Option to='/favourites'>Favourites</S.Option>
+              <S.Button onClick={() => signOut(dispatch)}>Sign out</S.Button>
+            </S.Wrapper>
+          ) : (
+            <S.Button onClick={() => signInWithGoogle(dispatch)}>
+              Sign in
+            </S.Button>
+          )}
+        </S.Options>
+      </S.OptionsContainer>
     </S.Container>
   );
 };

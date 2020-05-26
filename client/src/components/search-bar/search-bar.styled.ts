@@ -6,7 +6,7 @@ SearchBarStyles.Container = styled.div`
   @media screen and (min-width: 800px) {
     display: flex;
     justify-content: center;
-    width: 44%;
+    width: 30%;
   }
 `;
 
@@ -20,6 +20,7 @@ SearchBarStyles.Input = styled.input`
   background: rgb(32, 32, 32);
   color: white;
   transition: all 0.5s ease;
+  font-weight: 600;
 
   &:focus {
     background: white;

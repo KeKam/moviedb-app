@@ -39,7 +39,7 @@ HeaderStyles.Options = styled.div`
   }
 `;
 
-HeaderStyles.OptionContainer = styled.div`
+HeaderStyles.Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
@@ -49,6 +49,7 @@ HeaderStyles.Option = styled(Link)`
   font-size: 1.4em;
   color: white;
   text-decoration: none;
+  font-weight: 600;
 
   @media screen and (min-width: 800px) {
     display: flex;
@@ -60,7 +61,7 @@ HeaderStyles.Option = styled(Link)`
 
 HeaderStyles.Button = styled.button`
   font-size: 1.4em;
-  font-weight: 400;
+  font-weight: 600;
   padding: 0;
   color: white;
   border: none;
@@ -102,7 +103,7 @@ HeaderStyles.HamburgerMenu = styled.div`
   z-index: 1000000;
   font-weight: bold;
   font-size: 0.8em;
-  top: 76px;
+  top: 68px;
   left: 0;
   width: 100%;
   position: absolute;
@@ -129,5 +130,14 @@ HeaderStyles.MenuItem = styled.li`
 
   &:hover {
     background: #202020;
+  }
+`;
+
+HeaderStyles.OptionsContainer = styled.div`
+  @media screen and (min-width: 800px) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
   }
 `;

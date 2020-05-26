@@ -29,6 +29,7 @@ MoviesShowcaseStyles.Button = styled.button`
   transition: all 0.5s ease;
   margin: 0 10px;
   padding: 0;
+  font-weight: 600;
 
   @media screen and (min-width: 800px) {
     &:hover {
