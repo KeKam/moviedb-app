@@ -7,6 +7,7 @@ MoviesShowcaseStyles.Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 4% 2.5%;
+  position: relative;
 `;
 
 MoviesShowcaseStyles.ButtonsContainer = styled.div`
@@ -26,10 +27,11 @@ MoviesShowcaseStyles.Button = styled.button`
   color: white;
   cursor: pointer;
   opacity: ${(props) => (props.disabled ? '0.5' : '1')};
-  transition: all 0.5s ease;
+  transition: background 0.5s ease;
   margin: 0 10px;
   padding: 0;
   font-weight: 600;
+  outline: none;
 
   @media screen and (min-width: 800px) {
     &:hover {
@@ -49,10 +51,28 @@ MoviesShowcaseStyles.Movies = styled.div`
   }
 
   @media screen and (min-width: 1235px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 `;
 
 MoviesShowcaseStyles.Error = styled.h2`
+  color: white;
+`;
+
+MoviesShowcaseStyles.LoadingOverlay = styled.div`
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+`;
+
+MoviesShowcaseStyles.LoadingText = styled.h1`
+  position: absolute;
+  top: 35vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
 `;

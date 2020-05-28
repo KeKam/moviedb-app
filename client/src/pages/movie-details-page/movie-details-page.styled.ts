@@ -28,7 +28,6 @@ MovieDetailsPageStyles.DetailsContainer = styled.div`
 `;
 
 MovieDetailsPageStyles.Poster = styled.img`
-  display: flex;
   margin: 10% auto 0 auto;
   border: 5px solid #202020;
   border-radius: 5px;
@@ -43,7 +42,6 @@ MovieDetailsPageStyles.Poster = styled.img`
 `;
 
 MovieDetailsPageStyles.Details = styled.div`
-  display: block;
   margin: 0 2%;
 
   @media screen and (min-width: 800px) {
@@ -79,6 +77,7 @@ MovieDetailsPageStyles.Button = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  outline: none;
   transition: all 0.5s ease;
 
   @media screen and (min-width: 800px) {

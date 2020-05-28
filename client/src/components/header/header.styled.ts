@@ -117,12 +117,11 @@ HeaderStyles.MenuList = styled.ul`
 `;
 
 HeaderStyles.MenuItem = styled.li`
-  display: block;
   padding: 15px 0 15px 0;
   background: #000;
   text-align: center;
   border-bottom: 2px solid rgb(24, 24, 24);
-  transition: all 0.5s ease;
+  transition: background 0.5s ease;
 
   &:first-child {
     border-top: 2px solid rgb(24, 24, 24);

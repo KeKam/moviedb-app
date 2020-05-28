@@ -19,8 +19,9 @@ SearchBarStyles.Input = styled.input`
   padding: 5px 0;
   background: rgb(32, 32, 32);
   color: white;
-  transition: all 0.5s ease;
   font-weight: 600;
+  outline: none;
+  transition: background 0.5s ease;
 
   &:focus {
     background: white;

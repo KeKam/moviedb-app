@@ -52,8 +52,8 @@ export const initialState: AppState = {
   movie: null,
   currentUser: null,
   favourites: [],
-  searchTerm: '',
-  page: 0,
+  searchTerm: 'man',
+  page: 1,
 };
 
 export const reducer = (state: AppState, action: Actions) => {
@@ -63,7 +63,6 @@ export const reducer = (state: AppState, action: Actions) => {
       return {
         ...state,
         loading: true,
-        movies: null,
         errorMessage: null,
       };
     case ActionTypes.SEARCH_MOVIES_SUCCESS:

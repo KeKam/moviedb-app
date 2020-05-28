@@ -7,6 +7,7 @@ export const CustomButtonStyles = () => {};
 CustomButtonStyles.Container = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
+  align-items: center;
   background: ${(props) =>
     props.addToFavourites
       ? 'rgb(92, 184, 92)'
@@ -22,6 +23,7 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
   border-radius: 20px;
   font-weight: bold;
   cursor: pointer;
+  outline: none;
   transition: all 0.5s ease;
 
   @media screen and (min-width: 600px) {
