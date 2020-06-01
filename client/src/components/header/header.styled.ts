@@ -5,13 +5,13 @@ export const HeaderStyles = () => {};
 
 HeaderStyles.Container = styled.div`
   background: #000;
-  border-bottom: 2px solid rgb(24, 24, 24);
   color: white;
 
   @media screen and (min-width: 800px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid rgb(24, 24, 24);
   }
 `;
 
@@ -107,13 +107,13 @@ HeaderStyles.MenuItem = styled.li`
   padding: 15px 0 15px 0;
   background: #000;
   text-align: center;
-  border-bottom: 2px solid rgb(24, 24, 24);
+  border-bottom: 1px solid gray;
   transition: background 0.5s ease;
   list-style-type: none;
   list-style-image: none;
 
   &:first-child {
-    border-top: 2px solid rgb(24, 24, 24);
+    border-top: 1px solid gray;
   }
 
   &:hover {

@@ -17,7 +17,7 @@ MovieItemStyles.Container = styled.div`
 `;
 
 MovieItemStyles.Poster = styled.img`
-  width: 60%;
+  width: 70%;
   height: 175px;
   margin-top: 10%;
   border: 5px solid #202020;
@@ -25,7 +25,6 @@ MovieItemStyles.Poster = styled.img`
   @media screen and (min-width: 600px) {
     width: 80%;
     height: 330px;
-    max-width: 240px;
   }
 `;
 

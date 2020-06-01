@@ -24,8 +24,8 @@ MovieDetailsPageStyles.Poster = styled.img`
   margin: 10% auto 0 auto;
   border: 5px solid #202020;
   border-radius: 5px;
-  height: 175px;
-  width: 125px;
+  height: 240px;
+  width: 160px;
 
   @media screen and (min-width: 800px) {
     margin: 0;
@@ -63,6 +63,7 @@ MovieDetailsPageStyles.Text = styled.p`
 
 MovieDetailsPageStyles.Button = styled.button`
   font-size: 16px;
+  font-weight: bold;
   position: absolute;
   top: 10px;
   right: 10px;
