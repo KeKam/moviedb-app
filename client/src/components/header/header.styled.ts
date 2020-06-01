@@ -39,12 +39,6 @@ HeaderStyles.Options = styled.div`
   }
 `;
 
-HeaderStyles.Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-`;
-
 HeaderStyles.Option = styled(Link)`
   font-size: 1.4em;
   color: white;
@@ -109,19 +103,14 @@ HeaderStyles.HamburgerMenu = styled.div`
   position: absolute;
 `;
 
-HeaderStyles.MenuList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  list-style-image: none;
-`;
-
 HeaderStyles.MenuItem = styled.li`
   padding: 15px 0 15px 0;
   background: #000;
   text-align: center;
   border-bottom: 2px solid rgb(24, 24, 24);
   transition: background 0.5s ease;
+  list-style-type: none;
+  list-style-image: none;
 
   &:first-child {
     border-top: 2px solid rgb(24, 24, 24);

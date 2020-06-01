@@ -34,7 +34,7 @@ export const App = (): JSX.Element => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <GlobalStyle />
       <Header />
       <Switch>
@@ -49,6 +49,6 @@ export const App = (): JSX.Element => {
           />
         </Suspense>
       </Switch>
-    </div>
+    </>
   );
 };

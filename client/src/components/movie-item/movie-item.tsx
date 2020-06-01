@@ -40,13 +40,12 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
 
   return (
     <S.Container>
-      <div>
-        <S.Poster
-          src={Poster}
-          onError={handleOnError}
-          alt={`Poster for the movie ${Title}`}
-        />
-      </div>
+      <S.Poster
+        src={Poster}
+        onError={handleOnError}
+        alt={`Poster for the movie ${Title}`}
+      />
+
       {currentUser ? (
         <S.ButtonsContainer>
           {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (

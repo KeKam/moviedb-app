@@ -29,7 +29,7 @@ export const MovieDetailsPage = (): JSX.Element => {
         <S.Arrow>&#8592;</S.Arrow> Go back
       </S.Button>
       {movie && !loading ? (
-        <S.DetailsContainer>
+        <>
           <S.Poster
             src={movie.Poster}
             onError={handleOnError}
@@ -48,7 +48,7 @@ export const MovieDetailsPage = (): JSX.Element => {
             <S.Text>Plot: {movie.Plot}</S.Text>
             <S.Text>Rating: {movie.imdbRating}</S.Text>
           </S.Details>
-        </S.DetailsContainer>
+        </>
       ) : (
         <Spinner />
       )}

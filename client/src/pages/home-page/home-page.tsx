@@ -2,10 +2,4 @@ import React from 'react';
 
 import { MoviesShowcase } from '../../components/movies-showcase/movies-showcase';
 
-export const HomePage = (): JSX.Element => {
-  return (
-    <div>
-      <MoviesShowcase />
-    </div>
-  );
-};
+export const HomePage = (): JSX.Element => <MoviesShowcase />;

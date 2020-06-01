@@ -5,6 +5,7 @@ export const MovieDetailsPageStyles = () => {};
 MovieDetailsPageStyles.Container = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin: 4% 2%;
   color: white;
   background-color: rgb(24, 24, 24);
@@ -14,15 +15,7 @@ MovieDetailsPageStyles.Container = styled.div`
 
   @media screen and (min-width: 800px) {
     margin: 4% 2.5%;
-  }
-`;
-
-MovieDetailsPageStyles.DetailsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media screen and (min-width: 800px) {
+    align-items: center;
     flex-direction: row;
   }
 `;
