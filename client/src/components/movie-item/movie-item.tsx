@@ -1,11 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Movie } from '../../store/reducer';
 import {
-  fetchMovie,
-  addToFavourites,
-  removeFromFavourites,
+  startFetchMovie,
+  startAddToFavourites,
+  startRemoveFromFavourites,
 } from '../../store/actions';
 import { useAppState } from '../../hooks/useAppState';
 import { CustomButton } from '../custom-button/custom-button';
@@ -22,9 +22,9 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
   const { imdbID, Poster, Title } = movie;
   const { favourites, currentUser } = state;
 
-  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    fetchMovie(imdbID, dispatch);
+    startFetchMovie(imdbID, dispatch);
 
     if (history.location.pathname === '/favourites') {
       history.push(`/favourites/details/${imdbID}`);
@@ -33,7 +33,7 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
     }
   };
 
-  const handleOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const handleOnError = (e: SyntheticEvent<HTMLImageElement>): void => {
     e.currentTarget.onerror = null;
     e.currentTarget.src = missingPoster;
   };
@@ -52,7 +52,12 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
             <CustomButton
               removeFromFavourites
               onClick={() =>
-                removeFromFavourites(favourites, movie, currentUser, dispatch)
+                startRemoveFromFavourites(
+                  favourites,
+                  movie,
+                  currentUser,
+                  dispatch
+                )
               }
             >
               ★
@@ -61,7 +66,7 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
             <CustomButton
               addToFavourites
               onClick={() =>
-                addToFavourites(favourites, movie, currentUser, dispatch)
+                startAddToFavourites(favourites, movie, currentUser, dispatch)
               }
             >
               ☆

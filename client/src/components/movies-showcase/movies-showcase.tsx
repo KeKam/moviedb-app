@@ -14,13 +14,13 @@ export const MoviesShowcase = (): JSX.Element => {
       <S.ButtonsContainer>
         <S.Button
           disabled={page === 1 || loading}
-          onClick={() => setPage(page, 'previous', dispatch)}
+          onClick={() => dispatch(setPage(page - 1))}
         >
           Previous
         </S.Button>
         <S.Button
           disabled={loading}
-          onClick={() => setPage(page, 'next', dispatch)}
+          onClick={() => dispatch(setPage(page + 1))}
         >
           Next
         </S.Button>

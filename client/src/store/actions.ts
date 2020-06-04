@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import { User } from 'firebase';
 
 import { Actions, ActionTypes } from './types';
-import { Movie, UserDetails } from './reducer';
+import { Movie, UserDetails, MovieDetails } from './reducer';
 import {
   auth,
   googleProvider,
@@ -12,136 +12,181 @@ import {
   updateFavouritesInFirebase,
 } from '../firebase/firebase.utils';
 
-export const fetchSearchMovies = async (
+interface SearchResults {
+  Search: [];
+  Response: string;
+  Error: string;
+}
+
+export const fetchSearchMoviesSuccess = (searchResults: Movie[]): Actions => {
+  return {
+    type: ActionTypes.SEARCH_MOVIES_SUCCESS,
+    searchResults,
+  };
+};
+
+export const fetchSearchMoviesFailure = (error: string): Actions => {
+  return {
+    type: ActionTypes.SEARCH_MOVIES_FAILURE,
+    error,
+  };
+};
+
+export const startFetchSearchMovies = async (
   searchValue: string,
   page: number,
   dispatch: Dispatch<Actions>
-) => {
-  dispatch({ type: ActionTypes.START_SEARCH_MOVIES });
+): Promise<void> => {
   try {
-    const response = await axios({
-      method: 'post',
-      url: '/search',
-      data: {
-        page,
-        searchValue,
-      },
+    const response = await axios.post<SearchResults>('/search', {
+      page,
+      searchValue,
     });
 
     if (response.data.Response === 'True') {
-      dispatch({
-        type: ActionTypes.SEARCH_MOVIES_SUCCESS,
-        payload: response.data.Search,
-      });
+      dispatch(fetchSearchMoviesSuccess(response.data.Search));
     } else {
-      dispatch({
-        type: ActionTypes.SEARCH_MOVIES_FAILURE,
-        payload: response.data.Error,
-      });
+      dispatch(fetchSearchMoviesFailure(response.data.Error));
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const fetchMovie = async (id: string, dispatch: Dispatch<Actions>) => {
-  dispatch({ type: ActionTypes.START_FETCH_MOVIE });
+export const fetchMovieSuccess = (movieDetails: MovieDetails): Actions => {
+  return {
+    type: ActionTypes.FETCH_MOVIE_SUCCESS,
+    movieDetails,
+  };
+};
+
+export const fetchMovieFailure = (error: string): Actions => {
+  return {
+    type: ActionTypes.FETCH_MOVIE_FAILURE,
+    error,
+  };
+};
+
+export const startFetchMovie = async (
+  id: string,
+  dispatch: Dispatch<Actions>
+): Promise<void> => {
   try {
-    const response = await axios({
-      method: 'post',
-      url: `/details/${id}`,
-      data: {
-        id,
-      },
+    const response = await axios.post<MovieDetails>(`/details/${id}`, {
+      id,
     });
 
     if (response.data.Response === 'True') {
-      dispatch({
-        type: ActionTypes.FETCH_MOVIE_SUCCESS,
-        payload: response.data,
-      });
+      dispatch(fetchMovieSuccess(response.data));
     } else {
-      dispatch({
-        type: ActionTypes.FETCH_MOVIE_FAILURE,
-        payload: response.data.Error,
-      });
+      dispatch(fetchMovieFailure(response.data.Error));
     }
   } catch (error) {
     console.log(error);
   }
+};
+
+export const signInSuccess = (userDetails: UserDetails): Actions => {
+  return {
+    type: ActionTypes.SIGN_IN_SUCCESS,
+    userDetails,
+  };
+};
+
+export const signInFailure = (error: string): Actions => {
+  return {
+    type: ActionTypes.SIGN_IN_FAILURE,
+    error,
+  };
 };
 
 export const getUserSnapshot = async (
   user: User | null,
   dispatch: Dispatch<Actions>
-) => {
+): Promise<void> => {
   try {
     const userRef = await createUserProfileDocument(user);
     const userSnapshot = await userRef?.get();
     if (userSnapshot) {
-      dispatch({
-        type: ActionTypes.SIGN_IN_SUCCESS,
-        payload: { id: userSnapshot.id, ...userSnapshot.data() },
-      });
-      setFavouritesFromFirebase(userSnapshot.id, dispatch);
+      dispatch(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+      startSetFavouritesFromFirebase(userSnapshot.id, dispatch);
     }
   } catch (error) {
-    dispatch({
-      type: ActionTypes.SIGN_IN_FAILURE,
-      payload: error.message,
-    });
+    dispatch(signInFailure(error.message));
   }
 };
 
-export const signInWithGoogle = async (dispatch: Dispatch<Actions>) => {
+export const signInWithGoogle = async (
+  dispatch: Dispatch<Actions>
+): Promise<void> => {
   try {
     const { user } = await auth.signInWithPopup(googleProvider);
     await getUserSnapshot(user, dispatch);
   } catch (error) {
-    dispatch({
-      type: ActionTypes.SIGN_IN_FAILURE,
-      payload: error.message,
-    });
+    dispatch(signInFailure(error.message));
   }
 };
 
-export const signOut = async (dispatch: Dispatch<Actions>) => {
+export const signOutSuccess = (): Actions => {
+  return {
+    type: ActionTypes.SIGN_OUT_SUCCESS,
+  };
+};
+
+export const signOutFailure = (error: string): Actions => {
+  return {
+    type: ActionTypes.SIGN_OUT_FAILURE,
+    error,
+  };
+};
+
+export const startSignOut = async (
+  dispatch: Dispatch<Actions>
+): Promise<void> => {
   try {
     await auth.signOut();
-    dispatch({ type: ActionTypes.SIGN_OUT_SUCCESS });
+    dispatch(signOutSuccess());
   } catch (error) {
-    dispatch({
-      type: ActionTypes.SIGN_OUT_FAILURE,
-      payload: error.message,
-    });
+    dispatch(signOutFailure(error.message));
   }
 };
 
-export const addToFavourites = (
+export const addToFavourites = (favourites: Movie[]): Actions => {
+  return {
+    type: ActionTypes.ADD_TO_FAVOURITES,
+    favourites,
+  };
+};
+
+export const startAddToFavourites = async (
   favourites: Movie[],
   newFavourite: Movie,
   currentUser: UserDetails | null,
   dispatch: Dispatch<Actions>
-) => {
+): Promise<void> => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === newFavourite.imdbID
   );
 
   if (existingFavourite) return;
 
-  dispatch({
-    type: ActionTypes.ADD_TO_FAVOURITES,
-    payload: [...favourites, newFavourite],
-  });
-  updateFavouritesInFirebase(currentUser, [...favourites, newFavourite]);
+  await updateFavouritesInFirebase(currentUser, [...favourites, newFavourite]);
+  dispatch(addToFavourites([...favourites, newFavourite]));
 };
 
-export const removeFromFavourites = (
+export const removeFromFavourites = (favourites: Movie[]): Actions => {
+  return {
+    type: ActionTypes.REMOVE_FROM_FAVOURITES,
+    favourites,
+  };
+};
+
+export const startRemoveFromFavourites = async (
   favourites: Movie[],
   favouriteToRemove: Movie,
   currentUser: UserDetails | null,
   dispatch: Dispatch<Actions>
-) => {
+): Promise<void> => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === favouriteToRemove.imdbID
   );
@@ -150,61 +195,67 @@ export const removeFromFavourites = (
     const newFavourites = favourites.filter(
       (favourite) => favourite.imdbID !== favouriteToRemove.imdbID
     );
-    dispatch({
-      type: ActionTypes.REMOVE_FROM_FAVOURITES,
-      payload: newFavourites,
-    });
-    updateFavouritesInFirebase(currentUser, newFavourites);
+
+    await updateFavouritesInFirebase(currentUser, newFavourites);
+    dispatch(removeFromFavourites(newFavourites));
   }
 };
 
-export const checkUserSession = (dispatch: Dispatch<Actions>) => {
-  auth.onAuthStateChanged(async (user) => {
-    try {
-      if (user) {
+export const checkUserSession = (dispatch: Dispatch<Actions>): void => {
+  auth.onAuthStateChanged(
+    async (user): Promise<void> => {
+      try {
+        if (!user) return;
         await getUserSnapshot(user, dispatch);
-      } else {
-        return null;
+      } catch (error) {
+        dispatch(signInFailure(error.message));
       }
-    } catch (error) {
-      dispatch({
-        type: ActionTypes.SIGN_IN_FAILURE,
-        payload: error.message,
-      });
     }
-  });
+  );
 };
 
-export const setFavouritesFromFirebase = async (
+export const setFavouritesFromFirebase = (favourites: Movie[]): Actions => {
+  return {
+    type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE,
+    favourites,
+  };
+};
+
+export const startSetFavouritesFromFirebase = async (
   userId: string,
   dispatch: Dispatch<Actions>
-) => {
+): Promise<void> => {
   try {
     const favouritesRef = await getCurrentUserFavourites(userId);
 
     if (favouritesRef) {
       const favouritesSnapshot = await favouritesRef.get();
 
-      dispatch({
-        type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE,
-        payload: favouritesSnapshot.data()?.favourites,
-      });
+      dispatch(
+        setFavouritesFromFirebase(favouritesSnapshot.data()?.favourites)
+      );
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const setPage = (
-  pageState: number,
-  option: string,
-  dispatch: Dispatch<Actions>
-) => {
-  if (option === 'next') {
-    dispatch({ type: ActionTypes.SET_PAGE, payload: pageState + 1 });
-  } else if (option === 'previous') {
-    dispatch({ type: ActionTypes.SET_PAGE, payload: pageState - 1 });
-  } else {
-    dispatch({ type: ActionTypes.SET_PAGE, payload: 1 });
-  }
+export const setPage = (page: number): Actions => {
+  return {
+    type: ActionTypes.SET_PAGE,
+    page,
+  };
+};
+
+export const setSearchTerm = (searchTerm: string): Actions => {
+  return {
+    type: ActionTypes.SET_SEARCH_TERM,
+    searchTerm,
+  };
+};
+
+export const clearMovieDetails = (): Actions => {
+  return {
+    type: ActionTypes.CLEAR_MOVIE_DETAILS,
+  };
 };

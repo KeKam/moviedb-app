@@ -1,8 +1,8 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/useAppState';
-import { ActionTypes } from '../../store/types';
+import { clearMovieDetails } from '../../store/actions';
 import { Spinner } from '../../components/spinner/spinner';
 import missingPoster from '../../images/missing-poster.png';
 import { MovieDetailsPageStyles as S } from './movie-details-page.styled';
@@ -12,13 +12,13 @@ export const MovieDetailsPage = (): JSX.Element => {
   const history = useHistory();
   const { movie, loading } = state;
 
-  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     history.goBack();
-    dispatch({ type: ActionTypes.CLEAR_MOVIE_DETAILS });
+    dispatch(clearMovieDetails());
   };
 
-  const handleOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const handleOnError = (e: SyntheticEvent<HTMLImageElement>): void => {
     e.currentTarget.onerror = null;
     e.currentTarget.src = missingPoster;
   };

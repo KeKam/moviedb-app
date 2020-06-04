@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import { CustomButtonStyles as S } from './custom-button.styled';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
   addToFavourites?: boolean;
   removeFromFavourites?: boolean;
 }

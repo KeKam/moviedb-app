@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { SearchBar } from '../search-bar/search-bar';
-import { signInWithGoogle, signOut } from '../../store/actions';
+import { signInWithGoogle, startSignOut } from '../../store/actions';
 import { useAppState } from '../../hooks/useAppState';
 import { HeaderStyles as S } from './header.styled';
 
@@ -33,7 +33,9 @@ export const Header = (): JSX.Element => {
                 <S.Option to='/favourites'>Favourites</S.Option>
               </S.MenuItem>
               <S.MenuItem>
-                <S.Button onClick={() => signOut(dispatch)}>Sign out</S.Button>
+                <S.Button onClick={() => startSignOut(dispatch)}>
+                  Sign out
+                </S.Button>
               </S.MenuItem>
             </>
           ) : (
@@ -58,7 +60,9 @@ export const Header = (): JSX.Element => {
           {currentUser ? (
             <>
               <S.Option to='/favourites'>Favourites</S.Option>
-              <S.Button onClick={() => signOut(dispatch)}>Sign out</S.Button>
+              <S.Button onClick={() => startSignOut(dispatch)}>
+                Sign out
+              </S.Button>
             </>
           ) : (
             <S.Button onClick={() => signInWithGoogle(dispatch)}>

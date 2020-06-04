@@ -1,4 +1,9 @@
-import React, { createContext, Dispatch, useReducer, ReactNode } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  useReducer,
+  ReactElement,
+} from 'react';
 
 import { initialState, reducer } from '../store/reducer';
 import { Actions } from '../store/types';
@@ -7,7 +12,7 @@ export const AppStateContext = createContext(initialState);
 export const AppDispatchContext = createContext<Dispatch<Actions>>(() => null);
 
 export const AppStateProvider = (props: {
-  children: ReactNode;
+  children: ReactElement;
 }): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
 

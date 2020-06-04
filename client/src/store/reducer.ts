@@ -25,6 +25,7 @@ export interface MovieDetails {
   imdbRating: string;
   imdbID: string;
   Response: string;
+  Error: string;
 }
 
 export interface UserDetails {
@@ -56,26 +57,19 @@ export const initialState: AppState = {
   page: 1,
 };
 
-export const reducer = (state: AppState, action: Actions) => {
+export const reducer = (state: AppState, action: Actions): AppState => {
   switch (action.type) {
-    case ActionTypes.START_SEARCH_MOVIES:
-    case ActionTypes.START_FETCH_MOVIE:
-      return {
-        ...state,
-        loading: true,
-        errorMessage: null,
-      };
     case ActionTypes.SEARCH_MOVIES_SUCCESS:
       return {
         ...state,
         loading: false,
-        movies: action.payload,
+        movies: action.searchResults,
       };
     case ActionTypes.FETCH_MOVIE_SUCCESS:
       return {
         ...state,
         loading: false,
-        movie: action.payload,
+        movie: action.movieDetails,
       };
     case ActionTypes.SIGN_IN_FAILURE:
     case ActionTypes.SIGN_OUT_FAILURE:
@@ -84,13 +78,13 @@ export const reducer = (state: AppState, action: Actions) => {
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload,
+        errorMessage: action.error,
       };
     case ActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
         errorMessage: null,
-        currentUser: action.payload,
+        currentUser: action.userDetails,
       };
     case ActionTypes.SIGN_OUT_SUCCESS:
       return {
@@ -100,22 +94,12 @@ export const reducer = (state: AppState, action: Actions) => {
         favourites: [],
       };
     case ActionTypes.ADD_TO_FAVOURITES:
-      return {
-        ...state,
-        errorMessage: null,
-        favourites: action.payload,
-      };
     case ActionTypes.REMOVE_FROM_FAVOURITES:
-      return {
-        ...state,
-        errorMessage: null,
-        favourites: action.payload,
-      };
     case ActionTypes.SET_FAVOURITES_FROM_FIREBASE:
       return {
         ...state,
         errorMessage: null,
-        favourites: action.payload,
+        favourites: action.favourites,
       };
     case ActionTypes.CLEAR_MOVIE_DETAILS:
       return {
@@ -125,12 +109,15 @@ export const reducer = (state: AppState, action: Actions) => {
     case ActionTypes.SET_SEARCH_TERM:
       return {
         ...state,
-        searchTerm: action.payload,
+        loading: true,
+        page: 1,
+        searchTerm: action.searchTerm,
       };
     case ActionTypes.SET_PAGE:
       return {
         ...state,
-        page: action.payload,
+        loading: true,
+        page: action.page,
       };
     default:
       return state;

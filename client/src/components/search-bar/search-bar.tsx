@@ -2,9 +2,8 @@ import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/useAppState';
-import { fetchSearchMovies, setPage } from '../../store/actions';
+import { startFetchSearchMovies, setSearchTerm } from '../../store/actions';
 import { SearchBarStyles as S } from './search-bar.styled';
-import { ActionTypes } from '../../store/types';
 
 export const SearchBar = (): JSX.Element => {
   const { state, dispatch } = useAppState();
@@ -14,7 +13,7 @@ export const SearchBar = (): JSX.Element => {
   const { searchTerm, page } = state;
 
   useEffect(() => {
-    fetchSearchMovies(searchTerm, page, dispatch);
+    startFetchSearchMovies(searchTerm, page, dispatch);
   }, [searchTerm, page, dispatch]);
 
   const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -23,11 +22,7 @@ export const SearchBar = (): JSX.Element => {
 
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      dispatch({
-        type: ActionTypes.SET_SEARCH_TERM,
-        payload: searchValue,
-      });
-      setPage(page, 'start', dispatch);
+      dispatch(setSearchTerm(searchValue));
     }
   };
 
