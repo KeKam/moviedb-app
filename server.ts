@@ -26,8 +26,6 @@ interface FetchMovieDetails {
   Actors: string;
   Plot: string;
   Poster: string;
-  Ratings: {}[];
-  Metascore: string;
   imdbRating: string;
   imdbID: string;
   Response: string;
