@@ -2,7 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { useAppState } from './hooks/useAppState';
-import { checkUserSession } from './store/actions';
+import { checkUserSession } from './actions/user.actions';
 import { Header } from './components/header/header';
 import { PrivateRoute } from './components/private-route/private-route';
 import { Spinner } from './components/spinner/spinner';

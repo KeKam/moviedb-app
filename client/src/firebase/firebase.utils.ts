@@ -2,7 +2,7 @@ import firebase, { User } from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import { UserDetails, Movie } from '../store/reducer';
+import { UserDetails, Movie } from '../reducers/reducer';
 
 const config = {
   apiKey: 'AIzaSyDckAphmDO4_4EtbW6k94P3UfupSdXkzwE',

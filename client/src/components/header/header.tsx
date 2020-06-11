@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { SearchBar } from '../search-bar/search-bar';
-import { signInWithGoogle, startSignOut } from '../../store/actions';
+import { signInWithGoogle, startSignOut } from '../../actions/user.actions';
 import { useAppState } from '../../hooks/useAppState';
 import { HeaderStyles as S } from './header.styled';
 

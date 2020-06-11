@@ -32,7 +32,7 @@ interface FetchMovieDetails {
   Error: string;
 }
 
-const app: Application = express();
+const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
@@ -51,9 +51,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/search', async (req: Request, res: Response) => {
+  const { searchValue, page } = req.body;
   try {
     const response = await axios.get<FetchSearchResults>(
-      `https://www.omdbapi.com/?s=${req.body.searchValue}&page=${req.body.page}&apikey=${process.env.OMDB_API_KEY}`
+      `https://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=${process.env.OMDB_API_KEY}`
     );
     res.status(200).send(response.data);
   } catch (error) {

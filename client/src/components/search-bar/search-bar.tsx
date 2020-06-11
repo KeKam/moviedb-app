@@ -2,7 +2,10 @@ import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/useAppState';
-import { startFetchSearchMovies, setSearchTerm } from '../../store/actions';
+import {
+  startFetchSearchMovies,
+  setSearchTerm,
+} from '../../actions/movie.actions';
 import { SearchBarStyles as S } from './search-bar.styled';
 
 export const SearchBar = (): JSX.Element => {

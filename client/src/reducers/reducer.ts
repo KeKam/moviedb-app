@@ -1,4 +1,4 @@
-import { Actions, ActionTypes } from './types';
+import { Actions, ActionTypes } from '../types/types';
 
 export interface Movie {
   Title: string;

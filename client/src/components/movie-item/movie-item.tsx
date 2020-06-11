@@ -1,12 +1,12 @@
 import React, { MouseEvent, SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Movie } from '../../store/reducer';
+import { Movie } from '../../reducers/reducer';
+import { startFetchMovie } from '../../actions/movie.actions';
 import {
-  startFetchMovie,
   startAddToFavourites,
   startRemoveFromFavourites,
-} from '../../store/actions';
+} from '../../actions/user.actions';
 import { useAppState } from '../../hooks/useAppState';
 import { CustomButton } from '../custom-button/custom-button';
 import missingPoster from '../../images/missing-poster.png';

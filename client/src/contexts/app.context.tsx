@@ -5,8 +5,8 @@ import React, {
   ReactElement,
 } from 'react';
 
-import { initialState, reducer } from '../store/reducer';
-import { Actions } from '../store/types';
+import { initialState, reducer } from '../reducers/reducer';
+import { Actions } from '../types/types';
 
 export const AppStateContext = createContext(initialState);
 export const AppDispatchContext = createContext<Dispatch<Actions>>(() => null);
