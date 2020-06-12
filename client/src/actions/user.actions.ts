@@ -151,14 +151,15 @@ export const startSetFavouritesFromFirebase = async (
   dispatch: Dispatch<Actions>
 ): Promise<void> => {
   try {
-    const favouritesRef = await getCurrentUserFavourites(userId);
+    const userFavouritesRef = await getCurrentUserFavourites(userId);
 
-    if (favouritesRef) {
-      const favouritesSnapshot = await favouritesRef.get();
+    if (userFavouritesRef) {
+      const userFavouritesSnapshot = await userFavouritesRef.get();
+      const userFavouritesData = userFavouritesSnapshot.data();
 
-      dispatch(
-        setFavouritesFromFirebase(favouritesSnapshot.data()?.favourites)
-      );
+      if (userFavouritesData !== undefined) {
+        dispatch(setFavouritesFromFirebase(userFavouritesData.favourites));
+      }
     }
   } catch (error) {
     console.log(error);
