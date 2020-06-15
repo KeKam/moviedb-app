@@ -2,10 +2,35 @@ import axios from 'axios';
 import { Dispatch } from 'react';
 
 import { Actions, ActionTypes } from '../types/types';
-import { Movie, MovieDetails } from '../reducers/reducer';
 
 interface SearchResults {
   Search: [];
+  Response: string;
+  Error: string;
+}
+
+export interface Movie {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
+export interface MovieDetails {
+  Title: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Poster: string;
+  imdbRating: string;
+  imdbID: string;
   Response: string;
   Error: string;
 }

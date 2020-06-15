@@ -2,7 +2,7 @@ import { Dispatch } from 'react';
 import { User } from 'firebase';
 
 import { Actions, ActionTypes } from '../types/types';
-import { Movie, UserDetails } from '../reducers/reducer';
+import { Movie } from '../actions/movie.actions';
 import {
   auth,
   googleProvider,
@@ -10,6 +10,13 @@ import {
   getCurrentUserFavourites,
   updateFavouritesInFirebase,
 } from '../firebase/firebase.utils';
+
+export interface UserDetails {
+  id: string;
+  createdAt?: Date;
+  displayName?: string;
+  email?: string;
+}
 
 export const signInSuccess = (userDetails: UserDetails): Actions => {
   return {

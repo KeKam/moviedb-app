@@ -1,8 +1,7 @@
 import React, { MouseEvent, SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Movie } from '../../reducers/reducer';
-import { startFetchMovie } from '../../actions/movie.actions';
+import { startFetchMovie, Movie } from '../../actions/movie.actions';
 import {
   startAddToFavourites,
   startRemoveFromFavourites,

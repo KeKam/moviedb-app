@@ -1,4 +1,5 @@
-import { MovieDetails, Movie, UserDetails } from '../reducers/reducer';
+import { Movie, MovieDetails } from '../actions/movie.actions';
+import { UserDetails } from '../actions/user.actions';
 
 export enum ActionTypes {
   SEARCH_MOVIES_SUCCESS = 'SEARCH_MOVIES_SUCCESS',
