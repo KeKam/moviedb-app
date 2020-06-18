@@ -10,6 +10,8 @@ MovieItemStyles.Container = styled.div`
   text-align: center;
   background: rgb(24, 24, 24);
   border-radius: 5px;
+  height: 100%;
+  width: 100%;
 
   @media screen and (min-width: 800px) {
     min-width: 25%;
@@ -18,13 +20,14 @@ MovieItemStyles.Container = styled.div`
 `;
 
 MovieItemStyles.Poster = styled.img`
-  width: 70%;
-  height: 175px;
+  width: 80%;
+  height: 100%;
+  min-height: 209px;
+  max-height: 330px;
   margin-top: 10%;
   border: 5px solid #202020;
 
-  @media screen and (min-width: 600px) {
-    width: 80%;
+  @media screen and (min-width: 700px) {
     height: 330px;
   }
 `;
