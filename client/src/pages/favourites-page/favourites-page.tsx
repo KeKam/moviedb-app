@@ -10,6 +10,7 @@ export const FavouritesPage = (): JSX.Element => {
 
   return (
     <S.Container>
+      <S.Title>Favourites</S.Title>
       <S.Favourites>
         {favourites.map((favourite, index) => {
           return <MovieItem key={index} movie={favourite} />;

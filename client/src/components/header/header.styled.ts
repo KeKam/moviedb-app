@@ -6,12 +6,12 @@ export const HeaderStyles = () => {};
 HeaderStyles.Container = styled.div`
   background: #000;
   color: white;
+  border-bottom: 2px solid rgb(32, 32, 32);
 
   @media screen and (min-width: 800px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid rgb(24, 24, 24);
   }
 `;
 

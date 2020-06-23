@@ -9,6 +9,16 @@ FavouritesPageStyles.Container = styled.div`
   margin: 4% 2.5%;
 `;
 
+FavouritesPageStyles.Title = styled.h3`
+  color: white;
+  margin-top: 0;
+
+  @media screen and (min-width: 800px) {
+    font-size: 30px;
+    margin-bottom: 60px;
+  }
+`;
+
 FavouritesPageStyles.Favourites = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
