@@ -23,7 +23,7 @@ export const Header = (): JSX.Element => {
       )}
 
       {isOpen ? (
-        <S.HamburgerMenu>
+        <S.HamburgerMenu onClick={() => setIsOpen(false)}>
           {currentUser ? (
             <>
               <S.MenuItem>

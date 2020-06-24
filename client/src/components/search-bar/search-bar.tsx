@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/useAppState';
@@ -19,10 +19,6 @@ export const SearchBar = (): JSX.Element => {
     startFetchSearchMovies(searchTerm, page, dispatch);
   }, [searchTerm, page, dispatch]);
 
-  const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setSearchValue(e.target.value);
-  };
-
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       dispatch(setSearchTerm(searchValue));
@@ -33,7 +29,7 @@ export const SearchBar = (): JSX.Element => {
     <S.Container>
       {pathname !== '/favourites' ? (
         <S.Input
-          onChange={handleOnInputChange}
+          onChange={(e) => setSearchValue(e.target.value)}
           onKeyDown={handleOnKeyDown}
           value={searchValue}
           placeholder='Search movies...'
