@@ -45,39 +45,36 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
         alt={`Poster for the movie ${Title}`}
       />
 
-      {currentUser ? (
-        <S.ButtonsContainer>
-          {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (
-            <CustomButton
-              removeFromFavourites
-              onClick={() =>
-                startRemoveFromFavourites(
-                  favourites,
-                  movie,
-                  currentUser,
-                  dispatch
-                )
-              }
-            >
-              ★
-            </CustomButton>
-          ) : (
-            <CustomButton
-              addToFavourites
-              onClick={() =>
-                startAddToFavourites(favourites, movie, currentUser, dispatch)
-              }
-            >
-              ☆
-            </CustomButton>
-          )}
-          <CustomButton onClick={handleOnClick}>Details</CustomButton>
-        </S.ButtonsContainer>
-      ) : (
-        <S.ButtonsContainer>
-          <CustomButton onClick={handleOnClick}>Details</CustomButton>
-        </S.ButtonsContainer>
-      )}
+      <S.ButtonsContainer>
+        {favourites.find((favourite) => favourite.imdbID === movie.imdbID) ? (
+          <CustomButton
+            removeFromFavourites
+            onClick={() =>
+              startRemoveFromFavourites(
+                favourites,
+                movie,
+                currentUser,
+                dispatch
+              )
+            }
+          >
+            ★
+          </CustomButton>
+        ) : (
+          <CustomButton
+            disabled={!currentUser}
+            addToFavourites
+            onClick={() =>
+              startAddToFavourites(favourites, movie, currentUser, dispatch)
+            }
+          >
+            ☆
+          </CustomButton>
+        )}
+        <CustomButton fetchMovie onClick={handleOnClick}>
+          Details
+        </CustomButton>
+      </S.ButtonsContainer>
     </S.Container>
   );
 };

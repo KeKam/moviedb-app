@@ -15,6 +15,7 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
       ? 'rgb(217, 83, 79)'
       : 'rgb(66, 139, 202)'};
   color: white;
+  opacity: ${(props) => (props.disabled ? '0.5' : '1')};
   width: 45%;
   height: 30px;
   border: none;
@@ -36,11 +37,15 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
   @media screen and (min-width: 800px) {
     &:hover {
       background: ${(props) =>
-        props.addToFavourites
-          ? 'rgb(92, 184, 92, 0.5)'
+        props.addToFavourites && props.disabled
+          ? 'rgb(92, 184, 92)'
           : props.removeFromFavourites
           ? 'rgb(217, 83, 79, 0.5)'
-          : 'rgb(66, 139, 202, 0.5)'};
+          : props.fetchMovie
+          ? 'rgb(66, 139, 202, 0.5)'
+          : props.addToFavourites
+          ? 'rgb(92, 184, 92, 0.5)'
+          : 'unset'};
     }
   }
 `;

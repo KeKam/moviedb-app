@@ -6,6 +6,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   addToFavourites?: boolean;
   removeFromFavourites?: boolean;
+  fetchMovie?: boolean;
 }
 
 export const CustomButton = ({
