@@ -27,13 +27,6 @@ CustomButtonStyles.Container = styled.button<ButtonProps>`
   outline: none;
   transition: all 0.5s ease;
 
-  @media screen and (min-width: 600px) {
-    width: 134.5px;
-    height: 40px;
-    font-size: 15px;
-    margin: 0 10px;
-  }
-
   @media screen and (min-width: 800px) {
     &:hover {
       background: ${(props) =>

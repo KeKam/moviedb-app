@@ -27,7 +27,7 @@ MovieItemStyles.Poster = styled.img`
   margin-top: 10%;
   border: 5px solid #202020;
 
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 800px) {
     height: 330px;
   }
 `;
