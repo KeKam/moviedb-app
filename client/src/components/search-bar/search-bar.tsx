@@ -20,7 +20,7 @@ export const SearchBar = (): JSX.Element => {
   }, [searchTerm, page, dispatch]);
 
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
+    if ((e.key === 'Enter' && searchValue !== searchTerm) || '') {
       dispatch(setSearchTerm(searchValue));
     }
   };

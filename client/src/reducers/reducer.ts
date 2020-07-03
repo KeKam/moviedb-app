@@ -30,12 +30,14 @@ export const reducer = (state: AppState, action: Actions): AppState => {
       return {
         ...state,
         loading: false,
+        errorMessage: null,
         movies: action.searchResults,
       };
     case ActionTypes.FETCH_MOVIE_SUCCESS:
       return {
         ...state,
         loading: false,
+        errorMessage: null,
         movie: action.movieDetails,
       };
     case ActionTypes.SIGN_IN_FAILURE:
