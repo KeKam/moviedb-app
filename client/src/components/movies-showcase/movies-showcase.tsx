@@ -34,8 +34,8 @@ export const MoviesShowcase = (): JSX.Element => {
 
       {movies && !errorMessage ? (
         <S.Movies>
-          {movies.map((movie, index) => {
-            return <MovieItem key={index} movie={movie} />;
+          {movies.map((movie) => {
+            return <MovieItem key={movie.imdbID} movie={movie} />;
           })}
         </S.Movies>
       ) : errorMessage && page > 0 ? (
