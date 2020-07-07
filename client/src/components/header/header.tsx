@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { SearchBar } from '../search-bar/search-bar';
 import { signInWithGoogle, startSignOut } from '../../actions/user.actions';
@@ -7,8 +7,18 @@ import { HeaderStyles as S } from './header.styled';
 
 export const Header = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useAppState();
   const { currentUser } = state;
+
+  useEffect(() => {
+    document.body.addEventListener('click', (e: MouseEvent) => {
+      if (ref.current && ref.current.contains(e.target as Node)) {
+        return;
+      }
+      setIsOpen(false);
+    });
+  }, []);
 
   return (
     <S.Container>
@@ -23,7 +33,7 @@ export const Header = (): JSX.Element => {
       )}
 
       {isOpen ? (
-        <S.HamburgerMenu onClick={() => setIsOpen(false)}>
+        <S.HamburgerMenu ref={ref}>
           {currentUser ? (
             <>
               <S.MenuItem>
