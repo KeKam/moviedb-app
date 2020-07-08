@@ -12,16 +12,22 @@ export const Header = (): JSX.Element => {
   const { currentUser } = state;
 
   useEffect(() => {
-    document.body.addEventListener('click', (e: MouseEvent) => {
+    const handleOnBodyClick = (e: MouseEvent) => {
       if (ref.current && ref.current.contains(e.target as Node)) {
         return;
       }
       setIsOpen(false);
-    });
+    };
+
+    document.body.addEventListener('click', handleOnBodyClick);
+
+    return () => {
+      document.body.removeEventListener('click', handleOnBodyClick);
+    };
   }, []);
 
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       <S.Title to='/'>
         <h2>MovieDB</h2>
       </S.Title>
@@ -33,7 +39,7 @@ export const Header = (): JSX.Element => {
       )}
 
       {isOpen ? (
-        <S.HamburgerMenu ref={ref}>
+        <S.HamburgerMenu>
           {currentUser ? (
             <>
               <S.MenuItem>
