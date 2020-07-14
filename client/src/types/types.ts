@@ -18,7 +18,7 @@ export enum ActionTypes {
   SET_PAGE = 'SET_PAGE',
 }
 
-export type Actions =
+export type Action =
   | {
       type: ActionTypes.SEARCH_MOVIES_SUCCESS;
       searchResults: Movie[];

@@ -6,10 +6,10 @@ import React, {
 } from 'react';
 
 import { initialState, reducer } from '../reducers/reducer';
-import { Actions } from '../types/types';
+import { Action } from '../types/types';
 
 export const AppStateContext = createContext(initialState);
-export const AppDispatchContext = createContext<Dispatch<Actions>>(() => null);
+export const AppDispatchContext = createContext<Dispatch<Action>>(() => null);
 
 export const AppStateProvider = (props: {
   children: ReactElement;

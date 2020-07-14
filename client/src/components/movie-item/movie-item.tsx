@@ -20,12 +20,13 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
   const history = useHistory();
   const { imdbID, Poster, Title } = movie;
   const { favourites, currentUser } = state;
+  const { pathname } = history.location;
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     startFetchMovie(imdbID, dispatch);
 
-    if (history.location.pathname === '/favourites') {
+    if (pathname === '/favourites') {
       history.push(`/favourites/details/${imdbID}`);
     } else {
       history.push(`/details/${imdbID}`);

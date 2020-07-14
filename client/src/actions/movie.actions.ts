@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
 
-import { Actions, ActionTypes } from '../types/types';
+import { Action, ActionTypes } from '../types/types';
 
 interface SearchResults {
   Search: [];
@@ -35,63 +35,63 @@ export interface MovieDetails {
   Error: string;
 }
 
-export const fetchSearchMoviesSuccess = (searchResults: Movie[]): Actions => {
+export const fetchSearchMoviesSuccess = (searchResults: Movie[]): Action => {
   return {
     type: ActionTypes.SEARCH_MOVIES_SUCCESS,
     searchResults,
   };
 };
 
-export const fetchSearchMoviesFailure = (error: string): Actions => {
+export const fetchSearchMoviesFailure = (error: string): Action => {
   return {
     type: ActionTypes.SEARCH_MOVIES_FAILURE,
     error,
   };
 };
 
-export const fetchMovieSuccess = (movieDetails: MovieDetails): Actions => {
+export const fetchMovieSuccess = (movieDetails: MovieDetails): Action => {
   return {
     type: ActionTypes.FETCH_MOVIE_SUCCESS,
     movieDetails,
   };
 };
 
-export const fetchMovieFailure = (error: string): Actions => {
+export const fetchMovieFailure = (error: string): Action => {
   return {
     type: ActionTypes.FETCH_MOVIE_FAILURE,
     error,
   };
 };
 
-export const setPage = (page: number): Actions => {
+export const setPage = (page: number): Action => {
   return {
     type: ActionTypes.SET_PAGE,
     page,
   };
 };
 
-export const setSearchTerm = (searchTerm: string): Actions => {
+export const setSearchTerm = (searchTerm: string): Action => {
   return {
     type: ActionTypes.SET_SEARCH_TERM,
     searchTerm,
   };
 };
 
-export const clearMovieDetails = (): Actions => {
+export const clearMovieDetails = (): Action => {
   return {
     type: ActionTypes.CLEAR_MOVIE_DETAILS,
   };
 };
 
 export const startFetchSearchMovies = async (
-  searchValue: string,
+  searchTerm: string,
   page: number,
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     const response = await axios.post<SearchResults>('/search', {
       page,
-      searchValue,
+      searchTerm,
     });
 
     if (response.data.Response === 'True') {
@@ -106,7 +106,7 @@ export const startFetchSearchMovies = async (
 
 export const startFetchMovie = async (
   id: string,
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     const response = await axios.post<MovieDetails>(`/details/${id}`, {

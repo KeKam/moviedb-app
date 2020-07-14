@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { User } from 'firebase';
 
-import { Actions, ActionTypes } from '../types/types';
+import { Action, ActionTypes } from '../types/types';
 import { Movie } from '../actions/movie.actions';
 import {
   auth,
@@ -18,48 +18,48 @@ export interface UserDetails {
   email?: string;
 }
 
-export const signInSuccess = (userDetails: UserDetails): Actions => {
+export const signInSuccess = (userDetails: UserDetails): Action => {
   return {
     type: ActionTypes.SIGN_IN_SUCCESS,
     userDetails,
   };
 };
 
-export const signInFailure = (error: string): Actions => {
+export const signInFailure = (error: string): Action => {
   return {
     type: ActionTypes.SIGN_IN_FAILURE,
     error,
   };
 };
 
-export const signOutSuccess = (): Actions => {
+export const signOutSuccess = (): Action => {
   return {
     type: ActionTypes.SIGN_OUT_SUCCESS,
   };
 };
 
-export const signOutFailure = (error: string): Actions => {
+export const signOutFailure = (error: string): Action => {
   return {
     type: ActionTypes.SIGN_OUT_FAILURE,
     error,
   };
 };
 
-export const addToFavourites = (favourites: Movie[]): Actions => {
+export const addToFavourites = (favourites: Movie[]): Action => {
   return {
     type: ActionTypes.ADD_TO_FAVOURITES,
     favourites,
   };
 };
 
-export const removeFromFavourites = (favourites: Movie[]): Actions => {
+export const removeFromFavourites = (favourites: Movie[]): Action => {
   return {
     type: ActionTypes.REMOVE_FROM_FAVOURITES,
     favourites,
   };
 };
 
-export const setFavouritesFromFirebase = (favourites: Movie[]): Actions => {
+export const setFavouritesFromFirebase = (favourites: Movie[]): Action => {
   return {
     type: ActionTypes.SET_FAVOURITES_FROM_FIREBASE,
     favourites,
@@ -68,7 +68,7 @@ export const setFavouritesFromFirebase = (favourites: Movie[]): Actions => {
 
 export const getUserSnapshot = async (
   user: User | null,
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     const userRef = await createUserProfileDocument(user);
@@ -83,7 +83,7 @@ export const getUserSnapshot = async (
 };
 
 export const signInWithGoogle = async (
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     const { user } = await auth.signInWithPopup(googleProvider);
@@ -94,7 +94,7 @@ export const signInWithGoogle = async (
 };
 
 export const startSignOut = async (
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     await auth.signOut();
@@ -104,7 +104,7 @@ export const startSignOut = async (
   }
 };
 
-export const checkUserSession = (dispatch: Dispatch<Actions>): void => {
+export const checkUserSession = (dispatch: Dispatch<Action>): void => {
   auth.onAuthStateChanged(
     async (user): Promise<void> => {
       try {
@@ -121,7 +121,7 @@ export const startAddToFavourites = (
   favourites: Movie[],
   newFavourite: Movie,
   currentUser: UserDetails | null,
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): void => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === newFavourite.imdbID
@@ -137,7 +137,7 @@ export const startRemoveFromFavourites = (
   favourites: Movie[],
   favouriteToRemove: Movie,
   currentUser: UserDetails | null,
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): void => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === favouriteToRemove.imdbID
@@ -155,7 +155,7 @@ export const startRemoveFromFavourites = (
 
 export const startSetFavouritesFromFirebase = async (
   userId: string,
-  dispatch: Dispatch<Actions>
+  dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     const userFavouritesRef = await getCurrentUserFavourites(userId);

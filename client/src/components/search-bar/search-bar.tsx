@@ -17,12 +17,12 @@ export const SearchBar = (): JSX.Element => {
 
   useEffect(() => {
     if (searchValue !== '' && searchValue !== searchTerm) {
-      const timeoutId = setTimeout(() => {
+      const timerId = setTimeout(() => {
         dispatch(setSearchTerm(searchValue));
       }, 1000);
 
       return () => {
-        clearTimeout(timeoutId);
+        clearTimeout(timerId);
       };
     }
   }, [searchValue, searchTerm, dispatch]);

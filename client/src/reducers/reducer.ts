@@ -1,4 +1,4 @@
-import { Actions, ActionTypes } from '../types/types';
+import { Action, ActionTypes } from '../types/types';
 import { Movie, MovieDetails } from '../actions/movie.actions';
 import { UserDetails } from '../actions/user.actions';
 
@@ -24,7 +24,7 @@ export const initialState: AppState = {
   page: 1,
 };
 
-export const reducer = (state: AppState, action: Actions): AppState => {
+export const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case ActionTypes.SEARCH_MOVIES_SUCCESS:
       return {
