@@ -1,13 +1,12 @@
 import { Dispatch } from 'react';
-import { User } from 'firebase';
 
 import { Action, ActionTypes } from '../types/types';
 import { Movie } from '../actions/movie.actions';
 import {
   auth,
   googleProvider,
-  createUserProfileDocument,
-  getCurrentUserFavourites,
+  getCurrentUser,
+  getUserFavouritesFromFirebase,
   updateFavouritesInFirebase,
 } from '../firebase/firebase.utils';
 
@@ -66,28 +65,16 @@ export const setFavouritesFromFirebase = (favourites: Movie[]): Action => {
   };
 };
 
-export const getUserSnapshot = async (
-  user: User | null,
-  dispatch: Dispatch<Action>
-): Promise<void> => {
-  try {
-    const userRef = await createUserProfileDocument(user);
-    const userSnapshot = await userRef?.get();
-    if (userSnapshot) {
-      dispatch(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
-      startSetFavouritesFromFirebase(userSnapshot.id, dispatch);
-    }
-  } catch (error) {
-    dispatch(signInFailure(error.message));
-  }
-};
-
 export const signInWithGoogle = async (
   dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
     const { user } = await auth.signInWithPopup(googleProvider);
-    await getUserSnapshot(user, dispatch);
+    const currentUser = await getCurrentUser(user);
+
+    if (currentUser) {
+      dispatch(signInSuccess({ id: currentUser.id, ...currentUser.data() }));
+    }
   } catch (error) {
     dispatch(signInFailure(error.message));
   }
@@ -109,7 +96,18 @@ export const checkUserSession = (dispatch: Dispatch<Action>): void => {
     async (user): Promise<void> => {
       try {
         if (!user) return;
-        await getUserSnapshot(user, dispatch);
+        const currentUser = await getCurrentUser(user);
+
+        if (currentUser) {
+          const userFavourites = await getUserFavouritesFromFirebase(
+            currentUser.id
+          );
+
+          dispatch(
+            signInSuccess({ id: currentUser.id, ...currentUser.data() })
+          );
+          dispatch(setFavouritesFromFirebase(userFavourites));
+        }
       } catch (error) {
         dispatch(signInFailure(error.message));
       }
@@ -150,25 +148,5 @@ export const startRemoveFromFavourites = (
 
     dispatch(removeFromFavourites(newFavourites));
     updateFavouritesInFirebase(currentUser, newFavourites);
-  }
-};
-
-export const startSetFavouritesFromFirebase = async (
-  userId: string,
-  dispatch: Dispatch<Action>
-): Promise<void> => {
-  try {
-    const userFavouritesRef = await getCurrentUserFavourites(userId);
-
-    if (userFavouritesRef) {
-      const userFavouritesSnapshot = await userFavouritesRef.get();
-      const userFavouritesData = userFavouritesSnapshot.data();
-
-      if (userFavouritesData !== undefined) {
-        dispatch(setFavouritesFromFirebase(userFavouritesData.favourites));
-      }
-    }
-  } catch (error) {
-    console.log(error);
   }
 };

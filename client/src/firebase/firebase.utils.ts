@@ -83,3 +83,39 @@ export const updateFavouritesInFirebase = async (
     }
   }
 };
+
+export const getUserFavouritesFromFirebase = async (
+  userId: string
+): Promise<Movie[]> => {
+  try {
+    const userFavouritesRef = await getCurrentUserFavourites(userId);
+
+    if (userFavouritesRef) {
+      const userFavouritesSnapshot = await userFavouritesRef.get();
+      const userFavouritesData = userFavouritesSnapshot.data();
+
+      if (userFavouritesData) {
+        return userFavouritesData.favourites;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  return [];
+};
+
+export const getCurrentUser = async (user: User | null) => {
+  try {
+    const userRef = await createUserProfileDocument(user);
+    const currentUser = await userRef?.get();
+
+    if (currentUser) {
+      return currentUser;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  return null;
+};
