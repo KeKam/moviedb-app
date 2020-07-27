@@ -1,38 +1,19 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import enforce from 'express-sslify';
 import compression from 'compression';
 import path from 'path';
-import axios from 'axios';
+import dotenv from 'dotenv';
 
-if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+import { movieRouter } from './routes/movie-routes';
+import { serviceWorkerRouter } from './routes/service-worker-routes';
 
-interface FetchSearchResults {
-  Search: [];
-  Response: string;
-  Error: string;
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
 }
 
-interface FetchMovieDetails {
-  Title: string;
-  Year: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Plot: string;
-  Poster: string;
-  imdbRating: string;
-  imdbID: string;
-  Response: string;
-  Error: string;
-}
-
-const app: Application = express();
+const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
@@ -50,31 +31,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.post('/search', async (req: Request, res: Response) => {
-  try {
-    const response = await axios.get<FetchSearchResults>(
-      `https://www.omdbapi.com/?s=${req.body.searchTerm}&page=${req.body.page}&apikey=${process.env.OMDB_API_KEY}`
-    );
-    res.status(200).send(response.data);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
-
-app.post('/details/:id', async (req: Request, res: Response) => {
-  try {
-    const response = await axios.get<FetchMovieDetails>(
-      `https://www.omdbapi.com/?i=${req.body.id}&apikey=${process.env.OMDB_API_KEY}`
-    );
-    res.status(200).send(response.data);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
-
-app.get('/service-worker.js', (req: Request, res: Response) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'server-worker.js'));
-});
+app.use(movieRouter);
+app.use(serviceWorkerRouter);
 
 app.listen(port, () => {
   console.log('Server is running on port ' + port);
