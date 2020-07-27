@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { SearchBar } from '../search-bar/search-bar';
 import { signInWithGoogle, startSignOut } from '../../actions/user.actions';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 import { HeaderStyles as S } from './header.styled';
 
 export const Header = (): JSX.Element => {

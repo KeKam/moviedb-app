@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { setPage } from '../../actions/movie.actions';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 import { MovieItem } from '../movie-item/movie-item';
 import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 

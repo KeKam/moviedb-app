@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 import { MovieItem } from '../../components/movie-item/movie-item';
 import { FavouritesPageStyles as S } from './favourites-page.styled';
 

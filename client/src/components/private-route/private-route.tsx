@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 
 interface PrivateRouteProps extends RouteProps {
   component: ComponentType<any>;

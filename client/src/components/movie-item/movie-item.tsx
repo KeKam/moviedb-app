@@ -6,7 +6,7 @@ import {
   startAddToFavourites,
   startRemoveFromFavourites,
 } from '../../actions/user.actions';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 import { CustomButton } from '../custom-button/custom-button';
 import missingPoster from '../../images/missing-poster.png';
 import { MovieItemStyles as S } from './movie-item.styled';
@@ -20,13 +20,12 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
   const history = useHistory();
   const { imdbID, Poster, Title } = movie;
   const { favourites, currentUser } = state;
-  const { pathname } = history.location;
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     startFetchMovie(imdbID, dispatch);
 
-    if (pathname === '/favourites') {
+    if (history.location.pathname === '/favourites') {
       history.push(`/favourites/details/${imdbID}`);
     } else {
       history.push(`/details/${imdbID}`);

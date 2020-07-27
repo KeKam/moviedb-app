@@ -1,7 +1,7 @@
 import React, { MouseEvent, SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 import { clearMovieDetails } from '../../actions/movie.actions';
 import { Spinner } from '../../components/spinner/spinner';
 import missingPoster from '../../images/missing-poster.png';

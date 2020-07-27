@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../hooks/use-app-state';
 import {
   startFetchSearchMovies,
   setSearchTerm,
@@ -12,7 +12,6 @@ export const SearchBar = (): JSX.Element => {
   const { state, dispatch } = useAppState();
   const [searchValue, setSearchValue] = useState('');
   const history = useHistory();
-  const { pathname } = history.location;
   const { searchTerm, page } = state;
 
   useEffect(() => {
@@ -33,12 +32,13 @@ export const SearchBar = (): JSX.Element => {
 
   return (
     <S.Container>
-      {pathname !== '/favourites' ? (
+      {history.location.pathname !== '/favourites' ? (
         <S.Input
           onChange={(e) => setSearchValue(e.target.value)}
           value={searchValue}
           placeholder='Search movies...'
           type='text'
+          aria-hidden='true'
         />
       ) : null}
     </S.Container>
