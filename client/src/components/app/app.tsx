@@ -1,27 +1,29 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { useAppState } from './hooks/use-app-state';
-import { checkUserSession } from './actions/user.actions';
-import { Header } from './components/header/header';
-import { PrivateRoute } from './components/private-route/private-route';
-import { Spinner } from './components/spinner/spinner';
-import { GlobalStyle } from './components/global-style/global-style';
+import { useAppState } from '../../hooks/use-app-state';
+import { checkUserSession } from '../../actions/user.actions';
+import { Header } from '../header/header';
+import { PrivateRoute } from '../private-route/private-route';
+import { Spinner } from '../spinner/spinner';
+import { GlobalStyle } from '../global-style/global-style';
 
 const HomePage = lazy(() =>
-  import('./pages/home-page/home-page').then((module) => ({
+  import('../../pages/home-page/home-page').then((module) => ({
     default: module.HomePage,
   }))
 );
 
 const MovieDetailsPage = lazy(() =>
-  import('./pages/movie-details-page/movie-details-page').then((module) => ({
-    default: module.MovieDetailsPage,
-  }))
+  import('../../pages/movie-details-page/movie-details-page').then(
+    (module) => ({
+      default: module.MovieDetailsPage,
+    })
+  )
 );
 
 const FavouritesPage = lazy(() =>
-  import('./pages/favourites-page/favourites-page').then((module) => ({
+  import('../../pages/favourites-page/favourites-page').then((module) => ({
     default: module.FavouritesPage,
   }))
 );
