@@ -12,19 +12,19 @@ export const Header = (): JSX.Element => {
   const { currentUser } = state;
 
   useEffect(() => {
-    const handleOnBodyClick = (e: MouseEvent) => {
-      if (ref.current && ref.current.contains(e.target as Node)) {
-        return;
-      }
-      setIsOpen(false);
-    };
-
     document.body.addEventListener('click', handleOnBodyClick);
 
     return () => {
       document.body.removeEventListener('click', handleOnBodyClick);
     };
   }, []);
+
+  const handleOnBodyClick = (e: MouseEvent): void => {
+    if (ref.current && ref.current.contains(e.target as Node)) {
+      return;
+    }
+    setIsOpen(false);
+  };
 
   return (
     <S.Container ref={ref}>

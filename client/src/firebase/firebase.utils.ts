@@ -108,10 +108,13 @@ export const getUserFavouritesFromFirebase = async (
 export const getCurrentUser = async (user: User | null) => {
   try {
     const userRef = await createUserProfileDocument(user);
-    const currentUser = await userRef?.get();
 
-    if (currentUser) {
-      return currentUser;
+    if (userRef) {
+      const currentUser = await userRef.get();
+
+      if (currentUser) {
+        return currentUser;
+      }
     }
   } catch (error) {
     console.log(error);
