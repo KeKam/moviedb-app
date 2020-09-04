@@ -83,12 +83,20 @@ export const clearMovieDetails = (): Action => {
   };
 };
 
+export const startSearch = (): Action => {
+  return {
+    type: ActionTypes.START_SEARCH,
+  };
+};
+
 export const startFetchSearchMovies = async (
   searchTerm: string,
   page: number,
   dispatch: Dispatch<Action>
 ): Promise<void> => {
   try {
+    dispatch(startSearch());
+
     const response = await axios.post<SearchResults>('/search', {
       page,
       searchTerm,

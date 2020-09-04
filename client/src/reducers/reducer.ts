@@ -26,6 +26,11 @@ export const initialState: AppState = {
 
 export const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
+    case ActionTypes.START_SEARCH:
+      return {
+        ...state,
+        loading: true,
+      };
     case ActionTypes.SEARCH_MOVIES_SUCCESS:
       return {
         ...state,

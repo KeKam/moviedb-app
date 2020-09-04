@@ -16,6 +16,7 @@ export enum ActionTypes {
   CLEAR_MOVIE_DETAILS = 'CLEAR_MOVIE_DETAILS',
   SET_SEARCH_TERM = 'SET_SEARCH_TERM',
   SET_PAGE = 'SET_PAGE',
+  START_SEARCH = 'START_SEARCH',
 }
 
 export type Action =
@@ -72,4 +73,7 @@ export type Action =
   | {
       type: ActionTypes.SET_PAGE;
       page: number;
+    }
+  | {
+      type: ActionTypes.START_SEARCH;
     };
