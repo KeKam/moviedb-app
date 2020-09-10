@@ -11,6 +11,7 @@ interface AppState {
   favourites: Movie[];
   searchTerm: string;
   page: number;
+  isFetching: boolean;
 }
 
 export const initialState: AppState = {
@@ -22,10 +23,16 @@ export const initialState: AppState = {
   favourites: [],
   searchTerm: 'man',
   page: 1,
+  isFetching: true,
 };
 
 export const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
+    case ActionTypes.SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: false,
+      };
     case ActionTypes.START_SEARCH:
       return {
         ...state,
@@ -57,6 +64,7 @@ export const reducer = (state: AppState, action: Action): AppState => {
     case ActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
+        isFetching: false,
         errorMessage: null,
         currentUser: action.userDetails,
       };

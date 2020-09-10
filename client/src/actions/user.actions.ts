@@ -65,6 +65,12 @@ export const setFavouritesFromFirebase = (favourites: Movie[]): Action => {
   };
 };
 
+export const setIsFetching = (): Action => {
+  return {
+    type: ActionTypes.SET_IS_FETCHING,
+  };
+};
+
 export const signInWithGoogle = async (
   dispatch: Dispatch<Action>
 ): Promise<void> => {
@@ -95,7 +101,9 @@ export const checkUserSession = (dispatch: Dispatch<Action>): void => {
   auth.onAuthStateChanged(
     async (user): Promise<void> => {
       try {
-        if (!user) return;
+        if (!user) {
+          dispatch(setIsFetching());
+        }
         const currentUser = await getCurrentUser(user);
 
         if (currentUser) {

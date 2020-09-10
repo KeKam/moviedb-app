@@ -9,7 +9,7 @@ export const Header = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useAppState();
-  const { currentUser } = state;
+  const { currentUser, isFetching } = state;
 
   useEffect(() => {
     document.body.addEventListener('click', handleOnBodyClick);
@@ -70,22 +70,29 @@ export const Header = (): JSX.Element => {
       ) : null}
 
       <S.OptionsContainer>
-        <SearchBar />
-        <S.Options>
-          <S.Option to='/'>Home</S.Option>
-          {currentUser ? (
-            <>
+        {isFetching ? null : currentUser ? (
+          <>
+            <SearchBar />
+            <S.Options>
+              <S.Option to='/'>Home</S.Option>
               <S.Option to='/favourites'>Favourites</S.Option>
               <S.Button onClick={() => startSignOut(dispatch)}>
                 Sign out
               </S.Button>
-            </>
-          ) : (
-            <S.Button onClick={() => signInWithGoogle(dispatch)}>
-              Sign in
-            </S.Button>
-          )}
-        </S.Options>
+            </S.Options>
+          </>
+        ) : (
+          <>
+            <SearchBar />
+            <S.Options>
+              <S.Option to='/'>Home</S.Option>
+              <S.Option to='/favourites'>Favourites</S.Option>
+              <S.Button onClick={() => signInWithGoogle(dispatch)}>
+                Sign in
+              </S.Button>
+            </S.Options>
+          </>
+        )}
       </S.OptionsContainer>
     </S.Container>
   );

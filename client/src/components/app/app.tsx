@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/use-app-state';
 import { checkUserSession } from '../../actions/user.actions';
+import { startFetchSearchMovies } from '../../actions/movie.actions';
 import { Header } from '../header/header';
 import { PrivateRoute } from '../private-route/private-route';
 import { Spinner } from '../spinner/spinner';
@@ -29,11 +30,16 @@ const FavouritesPage = lazy(() =>
 );
 
 export const App = (): JSX.Element => {
-  const { dispatch } = useAppState();
+  const { state, dispatch } = useAppState();
+  const { searchTerm, page } = state;
 
   useEffect(() => {
     checkUserSession(dispatch);
   }, [dispatch]);
+
+  useEffect(() => {
+    startFetchSearchMovies(searchTerm, page, dispatch);
+  }, [searchTerm, page, dispatch]);
 
   return (
     <>

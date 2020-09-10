@@ -2,17 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAppState } from '../../hooks/use-app-state';
-import {
-  startFetchSearchMovies,
-  setSearchTerm,
-} from '../../actions/movie.actions';
+import { setSearchTerm } from '../../actions/movie.actions';
 import { SearchBarStyles as S } from './search-bar.styled';
 
 export const SearchBar = (): JSX.Element => {
   const { state, dispatch } = useAppState();
   const [searchValue, setSearchValue] = useState('');
   const history = useHistory();
-  const { searchTerm, page } = state;
+  const { searchTerm } = state;
 
   useEffect(() => {
     if (searchValue !== '' && searchValue !== searchTerm) {
@@ -25,10 +22,6 @@ export const SearchBar = (): JSX.Element => {
       };
     }
   }, [searchValue, searchTerm, dispatch]);
-
-  useEffect(() => {
-    startFetchSearchMovies(searchTerm, page, dispatch);
-  }, [searchTerm, page, dispatch]);
 
   return (
     <S.Container>

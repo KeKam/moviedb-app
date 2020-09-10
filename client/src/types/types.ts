@@ -17,6 +17,7 @@ export enum ActionTypes {
   SET_SEARCH_TERM = 'SET_SEARCH_TERM',
   SET_PAGE = 'SET_PAGE',
   START_SEARCH = 'START_SEARCH',
+  SET_IS_FETCHING = 'SET_IS_FETCHING',
 }
 
 export type Action =
@@ -76,4 +77,7 @@ export type Action =
     }
   | {
       type: ActionTypes.START_SEARCH;
+    }
+  | {
+      type: ActionTypes.SET_IS_FETCHING;
     };
