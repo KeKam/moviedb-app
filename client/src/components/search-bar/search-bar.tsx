@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState, useAppDispatch } from '../../contexts/app.context';
 import { setSearchTerm } from '../../actions/movie.actions';
 import { SearchBarStyles as S } from './search-bar.styled';
 
 export const SearchBar = () => {
-  const { state, dispatch } = useAppState();
   const [searchValue, setSearchValue] = useState('');
+  const { searchTerm } = useAppState();
+  const dispatch = useAppDispatch();
   const history = useHistory();
-  const { searchTerm } = state;
 
   useEffect(() => {
     if (searchValue !== '' && searchValue !== searchTerm) {

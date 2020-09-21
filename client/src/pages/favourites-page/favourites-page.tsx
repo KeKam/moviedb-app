@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState } from '../../contexts/app.context';
 import { MovieItem } from '../../components/movie-item/movie-item';
 import { FavouritesPageStyles as S } from './favourites-page.styled';
 
 export const FavouritesPage = () => {
-  const { state } = useAppState();
-  const { favourites } = state;
+  const { favourites } = useAppState();
 
   return (
     <S.Container>

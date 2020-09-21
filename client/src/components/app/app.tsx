@@ -1,7 +1,7 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState, useAppDispatch } from '../../contexts/app.context';
 import { checkUserSession } from '../../actions/user.actions';
 import { startFetchSearchMovies } from '../../actions/movie.actions';
 import { Header } from '../header/header';
@@ -30,8 +30,8 @@ const FavouritesPage = lazy(() =>
 );
 
 export const App = () => {
-  const { state, dispatch } = useAppState();
-  const { searchTerm, page } = state;
+  const { searchTerm, page } = useAppState();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     checkUserSession(dispatch);

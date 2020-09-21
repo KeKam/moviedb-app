@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { SearchBar } from '../search-bar/search-bar';
 import { signInWithGoogle, startSignOut } from '../../actions/user.actions';
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState, useAppDispatch } from '../../contexts/app.context';
 import { HeaderStyles as S } from './header.styled';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const { state, dispatch } = useAppState();
-  const { currentUser, isFetching } = state;
+  const { currentUser, isFetching } = useAppState();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     document.body.addEventListener('click', handleOnBodyClick);
@@ -86,7 +86,6 @@ export const Header = () => {
             <SearchBar />
             <S.Options>
               <S.Option to='/'>Home</S.Option>
-              <S.Option to='/favourites'>Favourites</S.Option>
               <S.Button onClick={() => signInWithGoogle(dispatch)}>
                 Sign in
               </S.Button>

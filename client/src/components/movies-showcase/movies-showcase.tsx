@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { setPage } from '../../actions/movie.actions';
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState, useAppDispatch } from '../../contexts/app.context';
 import { MovieItem } from '../movie-item/movie-item';
 import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 
 export const MoviesShowcase = () => {
-  const { state, dispatch } = useAppState();
-  const { errorMessage, movies, loading, page } = state;
+  const { errorMessage, movies, loading, page } = useAppState();
+  const dispatch = useAppDispatch();
 
   return (
     <S.Container>

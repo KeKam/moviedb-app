@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState } from '../../contexts/app.context';
 
 interface PrivateRouteProps extends RouteProps {
   component: ComponentType<any>;
@@ -11,8 +11,7 @@ export const PrivateRoute = ({
   component: Component,
   ...rest
 }: PrivateRouteProps) => {
-  const { state } = useAppState();
-  const { currentUser } = state;
+  const { currentUser } = useAppState();
 
   return (
     <Route

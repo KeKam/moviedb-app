@@ -1,16 +1,16 @@
 import React, { MouseEvent, SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState, useAppDispatch } from '../../contexts/app.context';
 import { clearMovieDetails } from '../../actions/movie.actions';
 import { Spinner } from '../../components/spinner/spinner';
 import missingPoster from '../../images/missing-poster.png';
 import { MovieDetailsPageStyles as S } from './movie-details-page.styled';
 
 export const MovieDetailsPage = () => {
-  const { state, dispatch } = useAppState();
+  const { movie, loading } = useAppState();
+  const dispatch = useAppDispatch();
   const history = useHistory();
-  const { movie, loading } = state;
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

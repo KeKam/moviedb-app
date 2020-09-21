@@ -6,7 +6,7 @@ import {
   startAddToFavourites,
   startRemoveFromFavourites,
 } from '../../actions/user.actions';
-import { useAppState } from '../../hooks/use-app-state';
+import { useAppState, useAppDispatch } from '../../contexts/app.context';
 import { CustomButton } from '../custom-button/custom-button';
 import missingPoster from '../../images/missing-poster.png';
 import { MovieItemStyles as S } from './movie-item.styled';
@@ -16,10 +16,10 @@ export interface MovieProps {
 }
 
 export const MovieItem = ({ movie }: MovieProps) => {
-  const { state, dispatch } = useAppState();
+  const { favourites, currentUser } = useAppState();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const { imdbID, Poster, Title } = movie;
-  const { favourites, currentUser } = state;
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

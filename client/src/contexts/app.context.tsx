@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useContext,
   Dispatch,
   useReducer,
   ReactElement,
@@ -21,4 +22,24 @@ export const AppStateProvider = (props: { children: ReactElement }) => {
       </AppDispatchContext.Provider>
     </AppStateContext.Provider>
   );
+};
+
+export const useAppState = () => {
+  const context = useContext(AppStateContext);
+
+  if (context === undefined) {
+    throw new Error('useAppState must be used within a AuthStateProvider');
+  }
+
+  return context;
+};
+
+export const useAppDispatch = () => {
+  const context = useContext(AppDispatchContext);
+
+  if (context === undefined) {
+    throw new Error('useAppDispatch must be used within a AuthStateProvider');
+  }
+
+  return context;
 };
