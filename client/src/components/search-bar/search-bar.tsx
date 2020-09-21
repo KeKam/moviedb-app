@@ -5,7 +5,7 @@ import { useAppState } from '../../hooks/use-app-state';
 import { setSearchTerm } from '../../actions/movie.actions';
 import { SearchBarStyles as S } from './search-bar.styled';
 
-export const SearchBar = (): JSX.Element => {
+export const SearchBar = () => {
   const { state, dispatch } = useAppState();
   const [searchValue, setSearchValue] = useState('');
   const history = useHistory();

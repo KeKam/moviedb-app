@@ -9,9 +9,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fetchMovie?: boolean;
 }
 
-export const CustomButton = ({
-  children,
-  ...buttonProps
-}: ButtonProps): JSX.Element => (
+export const CustomButton = ({ children, ...buttonProps }: ButtonProps) => (
   <S.Container {...buttonProps}>{children}</S.Container>
 );

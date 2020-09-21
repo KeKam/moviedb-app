@@ -5,7 +5,7 @@ import { useAppState } from '../../hooks/use-app-state';
 import { MovieItem } from '../movie-item/movie-item';
 import { MoviesShowcaseStyles as S } from './movies-showcase.styled';
 
-export const MoviesShowcase = (): JSX.Element => {
+export const MoviesShowcase = () => {
   const { state, dispatch } = useAppState();
   const { errorMessage, movies, loading, page } = state;
 

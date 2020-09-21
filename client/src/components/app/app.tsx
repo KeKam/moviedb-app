@@ -29,7 +29,7 @@ const FavouritesPage = lazy(() =>
   }))
 );
 
-export const App = (): JSX.Element => {
+export const App = () => {
   const { state, dispatch } = useAppState();
   const { searchTerm, page } = state;
 

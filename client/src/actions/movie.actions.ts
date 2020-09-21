@@ -93,10 +93,10 @@ export const startFetchSearchMovies = async (
   searchTerm: string,
   page: number,
   dispatch: Dispatch<Action>
-): Promise<void> => {
-  try {
-    dispatch(startSearch());
+) => {
+  dispatch(startSearch());
 
+  try {
     const response = await axios.post<SearchResults>('/search', {
       page,
       searchTerm,
@@ -115,7 +115,7 @@ export const startFetchSearchMovies = async (
 export const startFetchMovie = async (
   id: string,
   dispatch: Dispatch<Action>
-): Promise<void> => {
+) => {
   try {
     const response = await axios.post<MovieDetails>(`/details/${id}`, {
       id,

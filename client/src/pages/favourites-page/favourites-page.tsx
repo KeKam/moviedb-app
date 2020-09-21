@@ -4,7 +4,7 @@ import { useAppState } from '../../hooks/use-app-state';
 import { MovieItem } from '../../components/movie-item/movie-item';
 import { FavouritesPageStyles as S } from './favourites-page.styled';
 
-export const FavouritesPage = (): JSX.Element => {
+export const FavouritesPage = () => {
   const { state } = useAppState();
   const { favourites } = state;
 

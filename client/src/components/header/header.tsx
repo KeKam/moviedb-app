@@ -5,7 +5,7 @@ import { signInWithGoogle, startSignOut } from '../../actions/user.actions';
 import { useAppState } from '../../hooks/use-app-state';
 import { HeaderStyles as S } from './header.styled';
 
-export const Header = (): JSX.Element => {
+export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useAppState();
@@ -19,7 +19,7 @@ export const Header = (): JSX.Element => {
     };
   }, []);
 
-  const handleOnBodyClick = (e: MouseEvent): void => {
+  const handleOnBodyClick = (e: MouseEvent) => {
     if (ref.current && ref.current.contains(e.target as Node)) {
       return;
     }

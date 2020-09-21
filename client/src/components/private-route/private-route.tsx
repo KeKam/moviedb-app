@@ -10,7 +10,7 @@ interface PrivateRouteProps extends RouteProps {
 export const PrivateRoute = ({
   component: Component,
   ...rest
-}: PrivateRouteProps): JSX.Element => {
+}: PrivateRouteProps) => {
   const { state } = useAppState();
   const { currentUser } = state;
 

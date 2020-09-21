@@ -71,9 +71,7 @@ export const setIsFetching = (): Action => {
   };
 };
 
-export const signInWithGoogle = async (
-  dispatch: Dispatch<Action>
-): Promise<void> => {
+export const signInWithGoogle = async (dispatch: Dispatch<Action>) => {
   try {
     const { user } = await auth.signInWithPopup(googleProvider);
     const currentUser = await getCurrentUser(user);
@@ -86,9 +84,7 @@ export const signInWithGoogle = async (
   }
 };
 
-export const startSignOut = async (
-  dispatch: Dispatch<Action>
-): Promise<void> => {
+export const startSignOut = async (dispatch: Dispatch<Action>) => {
   try {
     await auth.signOut();
     dispatch(signOutSuccess());
@@ -97,30 +93,26 @@ export const startSignOut = async (
   }
 };
 
-export const checkUserSession = (dispatch: Dispatch<Action>): void => {
-  auth.onAuthStateChanged(
-    async (user): Promise<void> => {
-      try {
-        if (!user) {
-          dispatch(setIsFetching());
-        }
-        const currentUser = await getCurrentUser(user);
-
-        if (currentUser) {
-          const userFavourites = await getUserFavouritesFromFirebase(
-            currentUser.id
-          );
-
-          dispatch(
-            signInSuccess({ id: currentUser.id, ...currentUser.data() })
-          );
-          dispatch(setFavouritesFromFirebase(userFavourites));
-        }
-      } catch (error) {
-        dispatch(signInFailure(error.message));
+export const checkUserSession = (dispatch: Dispatch<Action>) => {
+  auth.onAuthStateChanged(async (user) => {
+    try {
+      if (!user) {
+        dispatch(setIsFetching());
       }
+      const currentUser = await getCurrentUser(user);
+
+      if (currentUser) {
+        const userFavourites = await getUserFavouritesFromFirebase(
+          currentUser.id
+        );
+
+        dispatch(signInSuccess({ id: currentUser.id, ...currentUser.data() }));
+        dispatch(setFavouritesFromFirebase(userFavourites));
+      }
+    } catch (error) {
+      dispatch(signInFailure(error.message));
     }
-  );
+  });
 };
 
 export const startAddToFavourites = (
@@ -128,7 +120,7 @@ export const startAddToFavourites = (
   newFavourite: Movie,
   currentUser: UserDetails | null,
   dispatch: Dispatch<Action>
-): void => {
+) => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === newFavourite.imdbID
   );
@@ -144,7 +136,7 @@ export const startRemoveFromFavourites = (
   favouriteToRemove: Movie,
   currentUser: UserDetails | null,
   dispatch: Dispatch<Action>
-): void => {
+) => {
   const existingFavourite = favourites.find(
     (favourite) => favourite.imdbID === favouriteToRemove.imdbID
   );

@@ -15,13 +15,13 @@ export interface MovieProps {
   movie: Movie;
 }
 
-export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
+export const MovieItem = ({ movie }: MovieProps) => {
   const { state, dispatch } = useAppState();
   const history = useHistory();
   const { imdbID, Poster, Title } = movie;
   const { favourites, currentUser } = state;
 
-  const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     startFetchMovie(imdbID, dispatch);
 
@@ -32,7 +32,7 @@ export const MovieItem = ({ movie }: MovieProps): JSX.Element => {
     }
   };
 
-  const handleOnError = (e: SyntheticEvent<HTMLImageElement>): void => {
+  const handleOnError = (e: SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.onerror = null;
     e.currentTarget.src = missingPoster;
   };

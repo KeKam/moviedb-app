@@ -11,9 +11,7 @@ import { Action } from '../types/types';
 export const AppStateContext = createContext(initialState);
 export const AppDispatchContext = createContext<Dispatch<Action>>(() => null);
 
-export const AppStateProvider = (props: {
-  children: ReactElement;
-}): JSX.Element => {
+export const AppStateProvider = (props: { children: ReactElement }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

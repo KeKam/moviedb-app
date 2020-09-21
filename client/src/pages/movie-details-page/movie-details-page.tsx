@@ -7,18 +7,18 @@ import { Spinner } from '../../components/spinner/spinner';
 import missingPoster from '../../images/missing-poster.png';
 import { MovieDetailsPageStyles as S } from './movie-details-page.styled';
 
-export const MovieDetailsPage = (): JSX.Element => {
+export const MovieDetailsPage = () => {
   const { state, dispatch } = useAppState();
   const history = useHistory();
   const { movie, loading } = state;
 
-  const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     history.goBack();
     dispatch(clearMovieDetails());
   };
 
-  const handleOnError = (e: SyntheticEvent<HTMLImageElement>): void => {
+  const handleOnError = (e: SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.onerror = null;
     e.currentTarget.src = missingPoster;
   };
